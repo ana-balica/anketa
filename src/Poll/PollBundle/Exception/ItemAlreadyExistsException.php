@@ -6,6 +6,6 @@ namespace Poll\PollBundle\Exception;
  *
  * @author AnaBalica
  */
-class ItemAlreadyExistsExeption extends Exception {
+class ItemAlreadyExistsException extends \Exception {
 	
 }
