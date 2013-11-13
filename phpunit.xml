@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+BI-WT1 PollBundle
+Configuration of unit tests 
+ -->
+<phpunit 
+	backupGlobals="false" 
+	backupStaticAttributes="false"
+	colors="true" 
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true" 
+	convertWarningsToExceptions="true"
+	processIsolation="false" 
+	stopOnFailure="false" 
+	syntaxCheck="false"	
+	bootstrap="autoloader.php">
+
+	<testsuites>
+		<testsuite name="Basic project test suite">
+			<directory>src/*/Tests</directory>
+			<directory>src/*/*/Tests</directory>
+			<directory>src/*/*/*/Tests</directory>
+			<directory>src/*/*/*/*/Tests</directory>
+		</testsuite>
+	</testsuites>
+
+	<!--<php>
+		<server name="VAR1" value="VALUE1" />
+	</php>-->
+
+</phpunit>
