@@ -6,6 +6,7 @@ use Poll\PollBundle\Common\Collection;
 use Poll\PollBundle\Entity\Text\TextQuestionImpl;
 use Poll\PollBundle\Exception\ItemAlreadyExistsException;
 use Poll\PollBundle\Exception\ItemDoesNotExistException;
+use Poll\PollBundle\Tests\Common\IdentifiedClassImpl;
 
 /**
  * 
