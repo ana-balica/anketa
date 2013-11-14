@@ -5,7 +5,6 @@ use Poll\PollBundle\Entity\Poll;
 use Poll\PollBundle\Entity\PollItem;
 use Poll\PollBundle\Entity\Question;
 use Poll\PollBundle\Entity\Answer;
-use Poll\PollBundle\Service\ObjectFactory;
 use Poll\PollBundle\Entity\PollImpl;
 use Poll\PollBundle\Entity\PollItemImpl;
 use Poll\PollBundle\Entity\Text\TextQuestionImpl;
@@ -17,6 +16,9 @@ use Poll\PollBundle\Entity\Choice\UnsharedOptionImpl;
 use Poll\PollBundle\Entity\Choice\SharedOptionImpl;
 use Poll\PollBundle\Entity\Text\TextAnswerImpl;
 use Poll\PollBundle\Entity\GroupImpl;
+use Poll\PollBundle\Service\LocalPollService;
+use Poll\PollBundle\Service\ObjectFactory;
+
 
 /**
  * Interface pro vytvareni objektu
