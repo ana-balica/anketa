@@ -1,5 +1,5 @@
 <?php
-namespace Poll\PollBundle\Entity;
+namespace Poll\PollBundle\Entity\Choice;
 
 class SingleChoiceAnswerImpl extends ChoiceAnswerImpl implements SingleChoiceAnswer {
 
