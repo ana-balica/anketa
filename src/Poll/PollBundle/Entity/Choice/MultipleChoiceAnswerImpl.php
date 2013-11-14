@@ -8,14 +8,7 @@ use Poll\PollBundle\Entity\Question;
  * Implementation of MultipleChoiseAnswer interface
  * @author AnaBalica
  */
-class MultipleChoiceAnswerImpl implements MultipleChoiceAnswer {
-
-	/**
-	 * @return string identifikator objektu
-	 */
-	public function getId() {
-		
-	}
+class MultipleChoiceAnswerImpl extends ChoiceAnswerImpl implements MultipleChoiceAnswer {
 
 	/**
 	 * 
