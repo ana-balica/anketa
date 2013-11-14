@@ -27,6 +27,6 @@ interface TextAnswer extends Answer {
 	 * @param string $anwser
 	 * @return TextAnswer
 	 */
-	public function setAnswer($anwser);
+	public function setAnswer($answer);
 
 }

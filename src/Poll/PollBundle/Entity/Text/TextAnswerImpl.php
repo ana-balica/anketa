@@ -19,11 +19,11 @@ class TextAnswerImpl extends AnswerImpl implements TextAnswer {
 
 	/**
 	 *
-	 * @param string $anwser
+	 * @param string $answer
 	 * @return TextAnswer
 	 */
-	public function setAnswer($anwser) {
-		$this->answer = $anwser;
+	public function setAnswer($answer) {
+		$this->answer = $answer;
 		return $this;
 	}
 }
