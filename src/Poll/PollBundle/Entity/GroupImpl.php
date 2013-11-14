@@ -3,6 +3,9 @@ namespace Poll\PollBundle\Entity;
 
 class GroupImpl extends PollItemImpl implements Group {
 
+	/** @var Collection */
+	protected $items;
+
 	/**
 	 * 
 	 * @param Question $question
