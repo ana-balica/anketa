@@ -30,11 +30,11 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
 	}
 
 	/**
-	 * 
+	 * Get the initial question
 	 * @return \Poll\PollBundle\Entity\Question
 	 */
 	public function getQuestion() {
-
+		return $this->question;
 	}
 
 	/**
@@ -45,6 +45,9 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
 	 * @throws IncompatibleClassException otazka neni kompatibilni s touto odpovedi
 	 */
 	public function setQuestion(Question $question) {
-
+		if ($question instanceof \Question)
+			throw new \LogicException("The question param should implement Question interface");
+		$this->question = $question;
+		return $this;
 	}
 }
