@@ -15,19 +15,19 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
 	protected $question;
 
 	/**
-	 * 
+	 * Get the respondent of the answer
 	 * @return Respondent
 	 */
 	public function getRespondent() {
-
+		return $this->respondent;
 	}
 
 	/**
-	 * 
+	 * Set the respondent of the answer
 	 * @param Respondent $respondent
 	 */
 	public function setRespondent(Respondent $respondent) {
-
+		$this->respondent = $respondent;
 	}
 
 	/**
