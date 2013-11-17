@@ -79,5 +79,4 @@ class Collection extends IdentifiedClass {
 	protected function isItem($id) {
 		return isset($this->items[$id]);
 	}
-
 }
