@@ -20,7 +20,7 @@ abstract class PollItemImpl extends IdentifiedClass implements PollItem {
 	 * @see \Poll\PollBundle\Entity\PollItem::getType()
 	 */
 	public function getType() {
-		$this->type;	
+		return $this->type;	
 	}
 
 	/** 
@@ -45,5 +45,4 @@ abstract class PollItemImpl extends IdentifiedClass implements PollItem {
 		$this->poll->addItem($this);
 		return $this;
 	}
-
 }
