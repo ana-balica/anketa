@@ -10,14 +10,14 @@ use Poll\PollBundle\Common\Collection;
 abstract class QuestionImpl extends PollItemImpl implements Question {
 
 	/** @var Collection */
-	protected $answers;
+	protected $items;
 
 	/** @var string */
 	protected $question;
 
 	public function __construct() {
 		parent::__construct();
-		$this->answers = Collection();
+		$this->items = new Collection();
 	}
 
 	/**
@@ -35,7 +35,7 @@ abstract class QuestionImpl extends PollItemImpl implements Question {
 	 */
 	public function setQuestion($question) {
 		if (empty($question))
-			throw new Exception("The question cannot be empty. Please provide a string.")
+			throw new Exception("The question cannot be empty. Please provide a string.");
 		$this->question = $question;
 		return $this;
 	}
@@ -46,7 +46,7 @@ abstract class QuestionImpl extends PollItemImpl implements Question {
 	 * @return Question
 	 */
 	public function addAnswer(Answer $answer) {
-		$this->answers->addItem($answer, true);
+		$this->items->addItem($answer, true);
 		return $this;
 	}
 
@@ -56,7 +56,7 @@ abstract class QuestionImpl extends PollItemImpl implements Question {
 	 * @return Question
 	 */
 	public function removeAnswer(Answer $answer) {
-		$this->answers->removeItem($answer, true);
+		$this->items->removeItem($answer, true);
 		return $this;
 	}
 
