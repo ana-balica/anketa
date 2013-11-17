@@ -2,6 +2,7 @@
 namespace Poll\PollBundle\Entity;
 
 use Poll\PollBundle\Common\IdentifiedClass;
+use Poll\PollBundle\Exception;
 
 /**
  * Abstract implementation of Answer class
@@ -45,6 +46,8 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
 	 * @throws IncompatibleClassException otazka neni kompatibilni s touto odpovedi
 	 */
 	public function setQuestion(Question $question) {
+		// TODO: throw IncompatibleClassException 
+		// what does mean for an answer and a question to be compatible?
 		if ($question instanceof \Question)
 			throw new \LogicException("The question param should implement Question interface");
 		$this->question = $question;
