@@ -20,7 +20,7 @@ class GroupImpl extends PollItemImpl implements Group {
 
 	public function __construct() {
 		parent::__construct();
-		$this->items = Collection();
+		$this->items = new Collection();
 	}
 
 	/**
