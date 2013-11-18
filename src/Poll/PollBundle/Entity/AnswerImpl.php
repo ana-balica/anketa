@@ -11,7 +11,10 @@ use Poll\PollBundle\Exception;
  */
 abstract class AnswerImpl extends IdentifiedClass implements Answer {
 
+    /** @var Respondent */
 	protected $respondent;
+
+    /** @var Question */
 	protected $question;
 
 	/**
