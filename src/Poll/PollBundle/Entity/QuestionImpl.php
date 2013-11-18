@@ -35,7 +35,7 @@ abstract class QuestionImpl extends PollItemImpl implements Question {
 	 */
 	public function setQuestion($question) {
 		if (empty($question))
-			throw new Exception("The question cannot be empty. Please provide a string.");
+			throw new \Exception("The question cannot be empty. Please provide a string.");
 		$this->question = $question;
 		return $this;
 	}
