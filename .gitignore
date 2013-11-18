@@ -14,3 +14,6 @@ app/config/parameters.yml
 
 # Project specific
 anketa
+
+# JetBrains project
+.idea
