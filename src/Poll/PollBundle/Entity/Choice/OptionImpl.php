@@ -5,21 +5,25 @@ use Poll\PollBundle\Common\IdentifiedClass;
 
 abstract class OptionImpl extends IdentifiedClass implements Option {
 
+	/** @var string */
+	protected $option;
+
 	/**
-	 * 
+	 * Get the option
 	 * @return string
 	 */
 	public function getOption() {
-
+		return $this->option;
 	}
 
 	/**
-	 * 
+	 * Set the option
 	 * @param string $option
 	 * @return Option
 	 */
 	public function setOption($option) {
-
+		$this->option = $option;
+		return $this;
 	}
 
 	/**
