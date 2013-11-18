@@ -18,6 +18,7 @@ abstract class ChoiceQuestionImpl extends QuestionImpl implements ChoiceQuestion
 	 */
 	public function addOption(Option $option) {
 		$this->items->addItem($option, true);
+        $option->addQuestion($this);
 		return $this;
 	}
 
@@ -28,6 +29,7 @@ abstract class ChoiceQuestionImpl extends QuestionImpl implements ChoiceQuestion
 	 */
 	public function removeOption(Option $option) {
 		$this->items->removeItem($option);
+        $option->removeQuestion($this);
 		return $this;
 	}
 
