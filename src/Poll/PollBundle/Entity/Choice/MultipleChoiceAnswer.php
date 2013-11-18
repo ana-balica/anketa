@@ -16,7 +16,7 @@ interface MultipleChoiceAnswer extends ChoiceAnswer {
 	 * Resi nemoznost dale specializovat rozhrani pomoci type hinting
 	 * @var string
 	 */
-	const COMPATIBLE_QUESTION = '\Poll\PollBundle\Entity\Choice\MultipleChoiceQuestion';
+	const COMPATIBLE_QUESTION = 'Poll\PollBundle\Entity\Choice\MultipleChoiceQuestion';
 
 	/**
 	 * prida zvolenou moznost do kolekce odpovedi

@@ -14,7 +14,7 @@ interface SingleChoiceAnswer extends ChoiceAnswer {
 	 * Resi nemoznost dale specializovat rozhrani pomoci type hinting
 	 * @var string
 	 */
-	const COMPATIBLE_QUESTION = '\Poll\PollBundle\Entity\Choice\SingleChoiceQuestion';
+	const COMPATIBLE_QUESTION = 'Poll\PollBundle\Entity\Choice\SingleChoiceQuestion';
 
 	/**
 	 * Nastaveni odpovedi

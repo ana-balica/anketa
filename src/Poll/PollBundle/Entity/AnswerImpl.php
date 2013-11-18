@@ -2,7 +2,7 @@
 namespace Poll\PollBundle\Entity;
 
 use Poll\PollBundle\Common\IdentifiedClass;
-use Poll\PollBundle\Exception;
+use Poll\PollBundle\Exception\IncompatibleClassException;
 
 /**
  * Abstract implementation of Answer class
@@ -51,8 +51,10 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
 	public function setQuestion(Question $question) {
         if ($question instanceof \Question)
             throw new \LogicException("The question param should implement Question interface");
-        if ($this::COMPATIBLE_QUESTION !== get_class($question))
-            throw new Exception\IncompatibleClassException("The answer and the question are not compatible");
+
+        $implemented_interfaces = class_implements(get_class($question));
+        if (!in_array($this::COMPATIBLE_QUESTION, $implemented_interfaces))
+            throw new IncompatibleClassException("The answer and the question are not compatible");
         $this->question = $question;
 		return $this;
 	}

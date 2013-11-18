@@ -14,7 +14,7 @@ interface TextAnswer extends Answer {
 	 * Resi nemoznost dale specializovat rozhrani pomoci type hinting
 	 * @var string
 	 */
-	const COMPATIBLE_QUESTION = '\Poll\PollBundle\Entity\Text\TextQuestion';
+	const COMPATIBLE_QUESTION = 'Poll\PollBundle\Entity\Text\TextQuestion';
 
 	/**
 	 * Vrati textovou odpoved 
