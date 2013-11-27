@@ -2,13 +2,14 @@
 
 namespace Poll\PollBundle\Entity\Choice;
 
-use Poll\PollBundle\Entity\Answer;
+use Poll\PollBundle\Service\ObjectFactory;
+
 
 class MultipleChoiceQuestionImpl extends ChoiceQuestionImpl implements MultipleChoiceQuestion {
 
     public function __construct() {
         parent::__construct();
-        $this->type = self::MULTIPLE_CHOICE_QUESTION;;
+        $this->type = ObjectFactory::MULTIPLE_CHOICE_QUESTION;;
     }
 
 }

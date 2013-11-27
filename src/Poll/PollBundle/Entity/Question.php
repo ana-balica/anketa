@@ -8,10 +8,6 @@ use Poll\PollBundle\Exception\ItemDoesNotExistException;
  */
 interface Question extends PollItem {
 
-    const TEXT_QUESTION = 1;
-	const SINGLE_CHOICE_QUESTION = 2;
-	const MULTIPLE_CHOICE_QUESTION = 3;
-
 	/**
 	 * Vrati text otazky
 	 * @return string
