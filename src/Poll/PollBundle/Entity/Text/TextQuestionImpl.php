@@ -9,4 +9,8 @@ use Poll\PollBundle\Entity\QuestionImpl;
  */
 class TextQuestionImpl extends QuestionImpl implements TextQuestion {
 
+    public function __construct() {
+        parent::__construct();
+        $this->type = self::TEXT_QUESTION;
+    }
 }
