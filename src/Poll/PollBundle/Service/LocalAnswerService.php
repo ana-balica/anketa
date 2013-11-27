@@ -1,10 +1,14 @@
 <?php
 namespace Poll\PollBundle\Service;
 
+use Poll\PollBundle\Service\ServiceImpl\LocalObjectFactory;
 use Poll\PollBundle\Entity\Answer;
 use Poll\PollBundle\Entity\Poll;
+use Poll\PollBundle\Entity\PollImpl;
 use Poll\PollBundle\Entity\Question;
 use Poll\PollBundle\Entity\Respondent;
+use Poll\PollBundle\Exception\AnswerDoesNotExistException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class LocalAnswerService implements AnswerService {
 
@@ -14,8 +18,14 @@ class LocalAnswerService implements AnswerService {
 	/** @var ObjectFactory $objectFactory */
 	protected $objectFactory;
 
-	/**
-	 * 
+    /**
+     * LocalAnswerService constructor
+     */
+    public function __construct(Poll $poll, LocalObjectFactory $objectFactory) {
+        $this->poll = $poll;
+        $this->objectFactory = $objectFactory;
+    }
+
 	 * @return Poll
 	 */
 	public function getPoll() {
