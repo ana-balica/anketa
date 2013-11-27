@@ -42,7 +42,7 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
 	}
 
 	/**
-	 * 
+	 * Set the question
 	 * @param Question $question
 	 * @return \Poll\PollBundle\Entity\Answer
 	 * @throws \LogicException pokud trida/rozhrani, se kterou je odpoved kompatibilni, neexistuje
@@ -56,6 +56,7 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
         if (!in_array($this::COMPATIBLE_QUESTION, $implemented_interfaces))
             throw new IncompatibleClassException("The answer and the question are not compatible");
         $this->question = $question;
+        $this->question->addAnswer($this);
 		return $this;
 	}
 }

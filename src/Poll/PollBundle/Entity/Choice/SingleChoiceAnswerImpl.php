@@ -15,6 +15,7 @@ class SingleChoiceAnswerImpl extends ChoiceAnswerImpl implements SingleChoiceAns
 	 */
 	public function setAnswer(Option $answer) {
 		$this->answer = $answer;
+        $this->answer->addAnswer($this);
 		return $this;
 	}
 }
