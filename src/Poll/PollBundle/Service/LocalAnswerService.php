@@ -26,10 +26,12 @@ class LocalAnswerService implements AnswerService {
         $this->objectFactory = $objectFactory;
     }
 
+    /**
+	 * Get the poll object
 	 * @return Poll
 	 */
 	public function getPoll() {
-
+        return $this->poll;
 	}
 
 	/**
