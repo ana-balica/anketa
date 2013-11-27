@@ -4,6 +4,7 @@ namespace Poll\PollBundle\Service;
 use Poll\PollBundle\Entity\Poll;
 use Poll\PollBundle\Entity\Question;
 use Poll\PollBundle\Entity\Group;
+use Poll\PollBundle\Service\ServiceImpl\LocalObjectFactory;
 
 class LocalGroupService implements GroupService {
 
@@ -12,6 +13,11 @@ class LocalGroupService implements GroupService {
 
 	/** @var ObjectFactory $objectFactory */
 	protected $objectFactory;
+
+    public function __construct(Poll $poll, LocalObjectFactory $objectFactory) {
+        $this->poll = $poll;
+        $this->objectFactory = $objectFactory;
+    }
 
 	/**
 	* 
