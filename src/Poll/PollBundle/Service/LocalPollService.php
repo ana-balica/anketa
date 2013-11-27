@@ -7,6 +7,10 @@ use Poll\PollBundle\Entity\PollImpl;
 use Poll\PollBundle\Service\ServiceImpl\LocalObjectFactory;
 use Poll\PollBundle\Exception\PollDoesNotExistException;
 
+/**
+ * Class LocalPollService
+ * @package Poll\PollBundle\Service
+ */
 class LocalPollService implements PollService {
 
 	/** @var Collection */
@@ -41,7 +45,7 @@ class LocalPollService implements PollService {
 	 * @return \Poll\PollBundle\Entity\Poll
 	 */
 	public function create($title = null, $description = null) {
-        $poll = new PollImpl();
+        $poll = $this->objectFactory->createPoll();
         $poll->setTitle($title);
         $poll->setDescription($description);
         $this->items->addItem($poll);
@@ -81,7 +85,8 @@ class LocalPollService implements PollService {
 	}
 	
 	/**
-	 * 
+	 * Find all the shared options using a "container" - in this case
+     * the survey, but not in the assigned groups of questions
 	 * @param \Poll\PollBundle\Entity\Poll $poll 
 	 * @return Collection
 	 */
@@ -90,27 +95,27 @@ class LocalPollService implements PollService {
 	}
 	
 	/**
-	 * 
+	 * Creates a service to work with questions of some specific poll
 	 * @param \Poll\PollBundle\Entity\Poll $poll
 	 */
 	public function getQuestionService(Poll $poll) {
-
+        return $this->objectFactory->createQuestionService($poll);
 	}
 	
 	/**
-	 * 
+	 * Create a service to work with answers of some specific poll
 	 * @param \Poll\PollBundle\Entity\Poll $poll
 	 */
 	public function getAnswerService(Poll $poll) {
-
+        return $this->objectFactory->createAnswerService($poll);
 	}
 	
 	/**
-	 * 
+	 * Create a service to work with groups of questions
 	 * @param \Poll\PollBundle\Entity\Poll $poll
 	 * @return \LogicException pokud neni sluzba implementovana
 	 */
 	public function getGroupService(Poll $poll) {
-
+        return $this->objectFactory->createGroupService($poll);
 	}
 }
