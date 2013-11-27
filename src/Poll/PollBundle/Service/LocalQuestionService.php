@@ -1,6 +1,14 @@
 <?php
 namespace Poll\PollBundle\Service;
 
+use Poll\PollBundle\Entity\Poll;
+use Poll\PollBundle\Entity\Question;
+use Poll\PollBundle\Entity\Choice\ChoiceQuestion;
+use Poll\PollBundle\Entity\Choice\Option;
+use Poll\PollBundle\Entity\Choice\SharedOption;
+use Poll\PollBundle\Service\ServiceImpl\LocalObjectFactory;
+
+
 class LocalQuestionService implements QuestionService {
 
 	/** @var Poll $poll */
@@ -8,6 +16,11 @@ class LocalQuestionService implements QuestionService {
 
 	/** @var ObjectFactory $objectFactory */
 	protected $objectFactory;
+
+    public function __construct(Poll $poll, LocalObjectFactory $objectFactory) {
+        $this->poll = $poll;
+        $this->objectFactory = $objectFactory;
+    }
 
 	/**
 	 * 
