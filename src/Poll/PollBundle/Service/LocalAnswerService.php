@@ -45,12 +45,17 @@ class LocalAnswerService implements AnswerService {
 	}
 
 	/**
-	 * 
+	 * Find the answer(s) according to its id
 	 * @param number $id
+     * @return Answer
 	 * @throws \Poll\PollBundle\Exception\AnswerDoesNotExistException
 	 */
 	public function find($id) {
-
+        try {
+            $this->poll->getItem($id);
+        } catch (Exception $e) {
+            throw new AnswerDoesNotExistException("An answer by this id doesn't exist");
+        }
 	}
 
 	/**
