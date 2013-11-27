@@ -4,10 +4,6 @@ namespace Poll\PollBundle\Service;
 use Poll\PollBundle\Entity\Poll;
 use Poll\PollBundle\Entity\Question;
 use Poll\PollBundle\Entity\Answer;
-use Poll\PollBundle\Entity\Choice\Option;
-use Poll\PollBundle\Entity\Choice\SharedOption;
-use Poll\PollBundle\Entity\Choice\ChoiceQuestion;
-use Poll\PollBundle\Entity\Text\TextQuestion;
 use Poll\PollBundle\Entity\Respondent;
 
 /**
