@@ -2,6 +2,7 @@
 namespace Poll\PollBundle\Entity\Choice;
 
 use Poll\PollBundle\Common\Collection;
+use Poll\PollBundle\Exception\InvalidOptionException;
 
 /**
  * Implementation of MultipleChoiseAnswer interface
@@ -32,7 +33,13 @@ class MultipleChoiceAnswerImpl extends ChoiceAnswerImpl implements MultipleChoic
 	 * @return MultipleChoiceQuestion
 	 */
 	public function addAnswerOption(Option $option) {
-		$this->answers->addItem($option);
+        if ($this->getQuestion()->hasOption($option)) {
+            $this->answers->addItem($option);
+            $option->addAnswer($this);
+        }
+        else
+            throw new InvalidOptionException("The following option is not valid.
+                                              Add the option to the question first.");
 		return $this;
 	}
 
