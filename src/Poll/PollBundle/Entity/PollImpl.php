@@ -22,7 +22,7 @@ class PollImpl extends IdentifiedClass implements Poll {
 	public function __construct() {
 		//vygeneruje se id z vzdaleneho rodice IdentifiedClass
 		parent::__construct();
-		$this->items = new Collection;
+		$this->items = new Collection();
 	}
 
 	/**
@@ -30,7 +30,7 @@ class PollImpl extends IdentifiedClass implements Poll {
 	 * @see \Poll\PollBundle\Entity\Poll::addItem()
 	 */
 	public function addItem(PollItem $item) {
-		$this->items->addItem($item);
+		$this->items->addItem($item, true);
 		return $this;
 	}
 
@@ -39,7 +39,7 @@ class PollImpl extends IdentifiedClass implements Poll {
 	 * @see \Poll\PollBundle\Entity\Poll::removeItem()
 	 */
 	public function removeItem(PollItem $item) {
-		$this->items->removeItem($item);
+		$this->items->removeItem($item, true);
 		return $this;
 	}
 
