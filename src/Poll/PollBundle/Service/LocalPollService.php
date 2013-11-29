@@ -91,7 +91,16 @@ class LocalPollService implements PollService {
 	 * @return Collection
 	 */
 	public function findSharedOptions(Poll $poll) {
-
+        $sharedOptions = array();
+        foreach($poll->getItems() as $item) {
+            $options = $item->getOptions();
+            foreach($options as $option) {
+                if ($option->isShared() == ObjectFactory::SHARED_OPTION)
+                    if (!in_array($option, $sharedOptions))
+                        array_push($sharedOptions, $option);
+            }
+        }
+        return new Collection($sharedOptions);
 	}
 	
 	/**
