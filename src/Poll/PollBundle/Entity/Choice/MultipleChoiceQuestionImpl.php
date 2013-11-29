@@ -9,7 +9,7 @@ class MultipleChoiceQuestionImpl extends ChoiceQuestionImpl implements MultipleC
 
     public function __construct() {
         parent::__construct();
-        $this->type = ObjectFactory::MULTIPLE_CHOICE_QUESTION;;
+        $this->type = ObjectFactory::MULTIPLE_CHOICE_QUESTION;
     }
 
 }
