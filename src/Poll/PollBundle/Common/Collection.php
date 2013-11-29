@@ -14,6 +14,11 @@ class Collection extends IdentifiedClass {
 	/** @var array[] */
 	protected $items;
 
+    public function __construct($items = array()) {
+        parent::__construct();
+        $this->items = $items;
+    }
+
 	/**
 	 * Vlozeni objektu do kolekce
 	 * @param Identified $item objekt
