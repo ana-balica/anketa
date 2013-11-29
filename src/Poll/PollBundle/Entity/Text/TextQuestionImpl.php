@@ -12,6 +12,6 @@ class TextQuestionImpl extends QuestionImpl implements TextQuestion {
 
     public function __construct() {
         parent::__construct();
-        $this->type = ObjectFactory::TEXT_QUESTION;
+        $this->questionType = ObjectFactory::TEXT_QUESTION;
     }
 }

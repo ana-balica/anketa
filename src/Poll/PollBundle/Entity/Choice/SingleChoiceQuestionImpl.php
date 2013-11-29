@@ -7,7 +7,7 @@ class SingleChoiceQuestionImpl extends ChoiceQuestionImpl implements SingleChoic
 
     public function __construct() {
         parent::__construct();
-        $this->type = ObjectFactory::SINGLE_CHOICE_QUESTION;
+        $this->questionType = ObjectFactory::SINGLE_CHOICE_QUESTION;
     }
 	
 }

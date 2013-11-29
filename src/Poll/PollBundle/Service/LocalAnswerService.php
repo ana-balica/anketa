@@ -45,7 +45,7 @@ class LocalAnswerService implements AnswerService {
 	 * @return \Poll\PollBundle\Entity\Answer
 	 */
 	public function create(Question $question, Respondent $respondent) {
-        $answer = $this->objectFactory->createAnswer($question->getType());
+        $answer = $this->objectFactory->createAnswer($question->getQuestionType());
         $answer->setRespondent($respondent);
         $answer->setQuestion($question);
         $this->answers->addItem($answer);

@@ -15,10 +15,22 @@ abstract class QuestionImpl extends PollItemImpl implements Question {
 	/** @var string */
 	protected $question;
 
+    /** @var  int */
+    protected $questionType;
+
 	public function __construct() {
 		parent::__construct();
 		$this->items = new Collection();
+        $this->type = PollItem::TYPE_SIMPLE;
 	}
+
+    /**
+     * Get question type
+     * @return int
+     */
+    public function getQuestionType() {
+        return $this->questionType;
+    }
 
 	/**
 	 * Get the question string
