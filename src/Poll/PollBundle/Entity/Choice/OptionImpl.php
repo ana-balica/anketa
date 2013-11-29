@@ -23,6 +23,9 @@ abstract class OptionImpl extends IdentifiedClass implements Option {
     /** @var boolean */
     protected $exclusive;
 
+    /** @var boolean */
+    protected $isShared;
+
     public function __construct() {
         parent::__construct();
         $this->questions = new Collection();
@@ -46,6 +49,14 @@ abstract class OptionImpl extends IdentifiedClass implements Option {
 		$this->option = $option;
 		return $this;
 	}
+
+    /**
+     * Get the option type (shared or unshared)
+     * @return bool true if shared option, false otherwise
+     */
+    public function isShared() {
+        return $this->isShared;
+    }
 
 	/**
 	 * Add questions
