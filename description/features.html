@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Anketa - Product Features</title>
+</head>
+<body>
+	<div id="header">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="features.html" class="active">Features</a></li>
+			<li><a href="user_guide.html">User Guide</a></li>
+			<li><a href="data_model.html">Data Model</a></li>
+			<li><a href="sitemap.html">Sitemap</a></li>
+		</ul>
+	</div>
+	<div id="main">
+		<h3>Goal</h3>
+		<p>The main goal is to create an intuitive tool for creating and taking polls, 
+		easy and straigh-forward way of managing surveys.</p>
+		<h3>User roles</h3>
+		<ul>
+			<li>Anonymous user</li>
+			<li>Registered user - authenticates against the local user database (in this case against MySQL)
+				<ul>
+					<li>Author</li>
+					<li>Respondent</li>
+				</ul>
+			</li>
+		</ul>
+		<h3>Functional requirements</h3>
+		<ul>
+			<li>F.1 User authentication
+				<ul>
+					<li>F.1.1 User Log In</li>
+					<li>F.1.2 User Log out</li>
+				</ul>
+			</li>
+			<li>F.2 Survey, questions, question groups
+				<ul>
+					<li>F.2.1 Survey
+						<ul>
+							<li>F.2.1.1 Create survey</li>
+							<li>F.2.1.2 List of surveys</li>
+							<li>F.2.1.3 Select a survey with identifier</li>
+							<li>F.2.1.4 Edit selected survey</li>
+							<li>F.2.1.5 Open a survey (optional)
+								<ul>
+									<li>F.2.1.5.1 manually</li>
+									<li>F.2.1.5.2 automatically according to set time and date</li>
+								</ul>
+							</li>
+							<li>F.2.1.6 Close a survey (optional)
+								<ul>
+									<li>F.2.1.6.1 manually</li>
+									<li>F.2.1.6.2 automatically according to set time and date</li>
+								</ul>
+							</li>
+							<li>F.2.1.7 Delete a survey</li>
+							<li>F.2.1.8 Display results of a survey</li>
+						</ul>
+					</li>
+					<li>F.2.2 Questions
+						<ul>
+							<li>F.2.2.1 Create a question - type, text, ev. possible answers</li>
+							<li>F.2.2.2 Modify a question - text, ev. possible answers</li>
+							<li>F.2.2.3 Delete a question</li>
+							<li>F.2.2.4 Assign a question to a survey / group of questions</li>
+							<li>F.2.2.5 Remove a question from a survey / group of questions</li>
+							<li>F.2.2.6 Display a result of a question</li>
+						</ul>
+					</li>
+					<li>F.2.3 Group of questions (optional)
+						<ul>
+							<li>F.2.3.1 Create a group of questions - title, description</li>
+							<li>F.2.3.2 Modify a group of questions - title, description</li>
+							<li>F.2.3.3 Delete a group of questions</li>
+							<li>F.2.3.4 Assign a group of questions to a survey</li>
+							<li>F.2.3.5 Remove a group of questions from a survey</li>
+							<li>F.2.3.6 Display a result of group of questions</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>F.3 Filling a survey
+				<ul>
+					<li>F.3.1 Fill a question</li>
+					<li>F.3.2 Fill a group of question (optional)</li>
+					<li>F.3.3 Display filled values of a respondent</li>
+				</ul>
+			</li>
+		</ul>
+		<h3>Nonfunctional requirements</h3>
+		<ul>
+			<li>N.1 PHP</li>
+			<li>N.2 Framework Symfony 2</li>
+			<li>N.3 MySQL database</li>
+			<li>N.4 web-based user interface
+				<ul>
+					<li>N.4.1 BI-WT1, BI-PWT: HTML, CSS</li>
+					<li>N.4.2 BI-WT2, BI-PWT: JS</li>
+				</ul>
+			</li>
+			<li>N.5 BI-WT2: Rest API (XML, JSON)</li>
+			<li>N.6 application deployment on the server webdev.fit.cvut.cz</li>
+		</ul>
+	</div>
+</body>
+</html>
