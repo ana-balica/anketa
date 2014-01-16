@@ -1,0 +1,20 @@
+body {
+	color: #CECECE;
+	background-color: #2C2C2C;
+}
+
+h3 {
+	color: #70AFA2;
+}
+
+table, thead, tbody, tr, td {
+	border: 1px solid #CECECE;
+}
+
+#header li>a {
+	color: #CECECE;
+}
+
+#footer {
+	color: #CECECE;
+}
