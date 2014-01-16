@@ -1,0 +1,105 @@
+body {
+	width: 100%;
+	margin: 0 auto;
+	font-size: 17px;
+	font-family: 'Open Sans', Arial, sans-serif;
+	line-height: 1.2em;
+	color: black;
+}
+
+a {
+	color: black;
+}
+
+h3 {
+	text-align: center;
+	font-size: 1.3em;
+	margin: 1em 0;
+}
+
+p {
+	margin: 1em 0;
+	text-indent: 1em;
+}
+
+img {
+	width: 80%;
+	margin: 0 auto;
+	display: block;
+}
+
+table, thead, tbody, tr, td {
+	border: 1px solid #888;
+}
+
+thead {
+	height: 2em;
+	font-size: 1.1em;
+	text-align: center;
+}
+
+table tr {
+	height: 2em;
+}
+
+table td {
+	padding: 0.4em;
+
+}
+
+table td:first-child {
+	width: 4%;
+}
+
+table td:nth-child(2) {
+	width: 24%;
+}
+
+#header {
+	padding: 24px 0;
+}
+
+#header ul {
+	text-align: center;
+}
+
+#header li {
+	display: inline;
+	margin: 13px;
+}
+
+#header li>a {
+	text-decoration: none;
+	font-variant: small-caps;
+	font-size: 1.3em;
+}
+
+#header li>a.active {
+	font-weight: 600;
+}
+
+#main {
+	margin: 20px 0;
+}
+
+#main ul {
+	list-style-type: square;
+	margin: 0 0 0 2em;
+}
+
+#main ul ul {
+	margin: 0 0 0 2em;
+}
+
+#footer {
+	text-align: right;
+	font-size: 0.7em;
+}
+
+#footer a {
+	text-decoration: none;
+}
+
+#footer a:hover {
+	font-weight: 600;
+}
