@@ -65,6 +65,10 @@ table td:nth-child(2) {
 	color: #2C2C2C;
 }
 
+#header li>a:hover {
+	font-weight: 600;
+}
+
 #header li>a.active {
 	font-weight: 600;
 }
@@ -85,4 +89,20 @@ table td:nth-child(2) {
 	width: 80%;
 	margin: 0 auto;
 	display: block;
+}
+
+#footer {
+	text-align: right;
+	font-size: 0.7em;
+	color: #2C2C2C;
+
+}
+
+#footer a {
+	color: #6B6A6A;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	font-weight: 600;
 }
