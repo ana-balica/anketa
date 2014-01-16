@@ -18,6 +18,12 @@ p {
 	text-indent: 1em;
 }
 
+img {
+	width: 80%;
+	margin: 0 auto;
+	display: block;
+}
+
 table, thead, tbody, tr, td {
 	border: 1px solid #888;
 }
@@ -85,17 +91,10 @@ table td:nth-child(2) {
 	margin: 0 0 0 2em;
 }
 
-.screenshots img {
-	width: 80%;
-	margin: 0 auto;
-	display: block;
-}
-
 #footer {
 	text-align: right;
 	font-size: 0.7em;
 	color: #2C2C2C;
-
 }
 
 #footer a {
