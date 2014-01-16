@@ -2,58 +2,65 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=latin,cyrillic-ext,latin-ext" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Anketa - User Guide</title>
 </head>
 <body>
 	<div id="header">
 		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="features.html">Features</a></li>
-			<li><a href="user_guide.html" class="active">User Guide</a></li>
-			<li><a href="data_model.html">Data Model</a></li>
-			<li><a href="sitemap.xml">Sitemap</a></li>
+			<li><a href="index.html">home</a></li>
+			<li><a href="features.html">features</a></li>
+			<li><a href="user_guide.html" class="active">user guide</a></li>
+			<li><a href="data_model.html">data model</a></li>
+			<li><a href="sitemap.xml">sitemap</a></li>
 		</ul>
 	</div>
+	<hr/>
 	<div id="main">
 		<h1>User Guide</h1>
-		<h3>Use Case 1 - User authentication</h3>
-		<p>In order to authenticate yourself you will need to fill out the email 
-		and password data in the top right corner form available on every page. After 
-		that click <em>Sign in</em> and you are in.</p>
-		
-		<h3>Use Case 2 - Create a new survey</h3>
-		<p>In order to create a new survey the user can click on <em>Create a poll</em> on
-		the main page of website or in the top left corner on any page. User is redirected
-		to the page which contains the form <em>Create a poll</em>. User should enter the title, 
-		description (optional) and questions. From a drop-down list user chooses a 
-		question type (Text question, Single choise question, Multiple choise question). 
-		If user selects <em>Text question</em>, then a single text input appear. 
-		If user selects <em>Single choise question</em>, then a text input for question
-		appears and a plus sign to add answer choices. Similar scenario is available 
-		for <em>Multiple choice answer</em>, the only difference is that the answer 
-		choices are going to be checkboxes. After the user is done creating the poll, 
-		click on <em>Create poll</em> button at the bottom.</p>
-
-		<h3>Use Case 3 - Edit a survey</h3>
-		<p>Go to the list of polls and locate the poll that needs to be edited. Near 
-		the poll in the top right corner there is a small button called <em>Edit</em>. 
-		Click on <em>Edit</em> and make the appropriate changes. When done, click 
-		<em>Save</em> at the bottom of the edit page.</p>
-
-		<h3>Use Case 4 - Display results of a survey</h3>
-		<p>Go to the list of polls and locate the poll the results of which you want 
-		to view. Click on the button <em>View results</em>. User will be redirected 
-		to a page which contains the results.</p>
-
-		<h3>Use Case 5 - Delete a survey</h3>
-		<p>Go to the list of polls and locate the poll that needs to be deleted. Near 
-		the poll in the top right corner there is a small button called <em>Delete</em>. 
-		Click on <em>Delete</em>. A popup will appear asking if the user is sure he 
-		wants to delete the poll, if yes - the poll the deleted.</p>
-
-		<h3>Use Case 6 - Take a poll</h3>
-		<p>Go to the list of polls. Choose a poll that you want to take. Fill out the 
-		necessary answers and click <em>Submit</em>.</p>
+		<table>
+			<thead>
+				<tr>
+					<td>#</td>
+					<td>Use case title</td>
+					<td>Use case description</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>User authentication</td>
+					<td>In order to authenticate yourself you will need to fill out the email and password data in the top right corner form available on every page. After that click <em>Sign in</em> and you are in.</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Create a new poll</td>
+					<td>In order to create a new survey the user can click on <em>Create a poll</em> on the main page of website or in the top left corner on any page. User is redirected to the page which contains the form <em>Create a poll</em>. User should enter the title, description (optional) and questions. From a drop-down list user chooses a question type (Text question, Single choise question, Multiple choise question). If user selects <em>Text question</em>, then a single text input appear. If user selects <em>Single choise question</em>, then a text input for question appears and a plus sign to add answer choices. Similar scenario is available for <em>Multiple choice answer</em>, the only difference is that the answer choices are going to be checkboxes. After the user is done creating the poll, click on <em>Create poll</em> button at the bottom.</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Edit a poll</td>
+					<td>Go to the list of polls and locate the poll that needs to be edited. Near the poll in the top right corner there is a small button called <em>Edit</em>. Click on <em>Edit</em> and make the appropriate changes. When done, click <em>Save</em> at the bottom of the edit page.</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Display the results of a poll</td>
+					<td>Go to the list of polls and locate the poll the results of which you want to view. Click on the button <em>View results</em>. User will be redirected to a page which contains the results.</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Delete a poll</td>
+					<td>Go to the list of polls and locate the poll that needs to be deleted. Near the poll in the top right corner there is a small button called <em>Delete</em>. Click on <em>Delete</em>. A popup will appear asking if the user is sure he wants to delete the poll, if yes - the poll the deleted.</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Take a poll</td>
+					<td>Go to the list of polls. Choose a poll that you want to take. Fill out the necessary answers and click <em>Submit</em>.</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
