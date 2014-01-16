@@ -3,6 +3,46 @@ body {
 	margin: 0 auto;
 	font-size: 17px;
 	font-family: 'Open Sans', Arial, sans-serif;
+	line-height: 1.2em;
+}
+
+h3 {
+	text-align: center;
+	font-size: 1.3em;
+	color: #14626D;
+	margin: 1em 0;
+}
+
+p {
+	margin: 1em 0;
+	text-indent: 1em;
+}
+
+table, thead, tbody, tr, td {
+	border: 1px solid #888;
+}
+
+thead {
+	height: 2em;
+	font-size: 1.1em;
+	text-align: center;
+}
+
+table tr {
+	height: 2em;
+}
+
+table td {
+	padding: 0.4em;
+
+}
+
+table td:first-child {
+	width: 4%;
+}
+
+table td:nth-child(2) {
+	width: 24%;
 }
 
 #header {
@@ -33,15 +73,16 @@ body {
 	margin: 20px 0;
 }
 
-.description p {
-	margin: 1em 0;
-	text-indent: 1em;
-	line-height: 1.2em;
+#main ul {
+	list-style-type: square;
+}
+
+#main ul ul {
+	margin: 0 0 0 2em;
 }
 
 .screenshots img {
 	width: 80%;
 	margin: 0 auto;
 	display: block;
-	
 }
