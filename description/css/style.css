@@ -1,0 +1,47 @@
+body {
+	width: 60%;
+	margin: 0 auto;
+	font-size: 17px;
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+
+#header {
+	padding: 24px 0;
+}
+
+#header ul {
+	text-align: center;
+}
+
+#header li {
+	display: inline;
+	margin: 13px;
+}
+
+#header li>a {
+	text-decoration: none;
+	font-variant: small-caps;
+	font-size: 1.3em;
+	color: #2C2C2C;
+}
+
+#header li>a.active {
+	font-weight: 600;
+}
+
+#main {
+	margin: 20px 0;
+}
+
+.description p {
+	margin: 1em 0;
+	text-indent: 1em;
+	line-height: 1.2em;
+}
+
+.screenshots img {
+	width: 80%;
+	margin: 0 auto;
+	display: block;
+	
+}
