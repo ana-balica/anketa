@@ -1,9 +1,34 @@
+/* Global overrides */
 html,
 body {
     height: 100%;
 }
 
-/* Wrapper for page content to push down footer */
+a:hover {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+/* Reusable classes */
+.h20 {
+    display: block;
+    height: 20px;
+}
+
+.h40 {
+    display: block;
+    height: 40px;
+}
+
+.fs60 {
+    font-size: 60px;
+}
+
+.mt0 {
+    margin-top: 0;
+}
+
+/* Base layout and main components */
 #wrap {
     min-height: 100%;
     height: auto;
@@ -17,13 +42,25 @@ body {
 }
 
 #wrap > .container {
-  padding: 60px 15px 0;
+    padding: 60px 15px 0;
 }
+
 .container .text-muted {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
 #footer > .container {
-  padding-left: 15px;
-  padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Landing page */
+ul.main_menu {
+    padding: 0;
+    margin: 0;
+}
+
+ul.main_menu > li {
+    list-style-type: none;
+    text-align: center;
 }

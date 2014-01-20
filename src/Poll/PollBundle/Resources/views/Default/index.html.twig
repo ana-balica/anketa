@@ -1,0 +1,20 @@
+{# src/Poll/PollBundle/Resources/views/Default/index.html.twig #}
+{% extends 'PollPollBundle:Default:layout.html.twig' %}
+
+{% block content %}
+    <div class="h40"></div>
+    <h1 class="text-center fs60"><strong>Anketa</strong></h1>
+    <h1 class="text-center mt0">
+        <small>Best place to manage your polls</small>
+    </h1>
+    <div class="h20"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Create a poll</button>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Take a random poll</button>
+        </div>
+    </div>
+    <hr/>
+{% endblock %}
