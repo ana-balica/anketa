@@ -10,4 +10,17 @@ class DefaultController extends Controller
     {
         return $this->render('PollPollBundle:Default:index.html.twig');
     }
+
+    public function pollAction()
+    {
+//        $polls = array();
+//        $poll1 = array(
+//            "id" => 1234,
+//            "title" => "Cats vs Dogs",
+//            "questions" => array(
+//
+//            ),
+//        );
+        return $this->render('PollPollBundle:Poll:view_poll.html.twig', array('name' => "smth"));
+    }
 }

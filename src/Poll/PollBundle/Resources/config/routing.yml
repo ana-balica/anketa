@@ -1,3 +1,7 @@
 poll_poll_homepage:
     pattern:  /
     defaults: { _controller: PollPollBundle:Default:index }
+
+poll_poll_view_poll:
+    pattern: /test_poll
+    defaults: { _controller: PollPollBundle:Default:poll }
