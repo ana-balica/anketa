@@ -23,4 +23,9 @@ class DefaultController extends Controller
 //        );
         return $this->render('PollPollBundle:Poll:view_poll.html.twig', array('name' => "smth"));
     }
+
+    public function createpollAction()
+    {
+        return $this->render('PollPollBundle:Poll:create_poll.html.twig');
+    }
 }
