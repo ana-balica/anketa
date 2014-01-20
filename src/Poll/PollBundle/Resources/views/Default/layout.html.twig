@@ -1,0 +1,43 @@
+{# src/Poll/PollBundle/Resources/views/Default/index.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block title %}Welcome to Anketa!{% endblock %}
+{% block stylesheets %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% stylesheets
+        '@PollPollBundle/Resources/public/css/bootstrap.min.css'
+        '@PollPollBundle/Resources/public/css/style.css' %}
+        <link href="{{ asset_url }}" rel="stylesheet" media="screen"/>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div id="wrap">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">Create poll</a></li>
+                        <li><a href="#contact">Show polls</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">&copy; Created by <a href="http://www.code-speculations.me/">Ana Balica</a>
+                for educational purposes at <a href="http://www.cvut.cz/">CVUT</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@PollPollBundle/Resources/public/js/bootstrap.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
