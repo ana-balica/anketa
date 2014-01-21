@@ -13,3 +13,7 @@ poll_create_poll:
 poll_add_question:
     pattern: /poll/{poll_id}/add_question
     defaults: { _controller: PollPollBundle:Default:addquestion }
+
+poll_show:
+    pattern: /poll/{poll_id}
+    defaults: { _controller: PollPollBundle:Default:showpoll }

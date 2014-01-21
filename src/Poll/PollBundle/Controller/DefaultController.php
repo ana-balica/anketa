@@ -46,4 +46,8 @@ class DefaultController extends Controller
         return $this->render('PollPollBundle:Poll:create_poll.html.twig', array('form' => $form->createView()));
     }
 
+
+    public function showpollAction(Request $request, $poll_id) {
+        return $this->render('PollPollBundle:Default:index.html.twig');
+    }
 }
