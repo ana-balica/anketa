@@ -3,6 +3,8 @@
 namespace Poll\PollBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Poll\PollBundle\Form\NewPoll;
 
 class DefaultController extends Controller
 {
@@ -24,8 +26,8 @@ class DefaultController extends Controller
         return $this->render('PollPollBundle:Poll:view_poll.html.twig', array('name' => "smth"));
     }
 
-    public function createpollAction()
-    {
-        return $this->render('PollPollBundle:Poll:create_poll.html.twig');
+    public function createpollAction(Request $request) {
+        $form = $this->createForm(new NewPoll());
+        return $this->render('PollPollBundle:Poll:create_poll.html.twig', array('form' => $form->createView()));
     }
 }

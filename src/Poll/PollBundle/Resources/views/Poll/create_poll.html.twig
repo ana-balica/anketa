@@ -5,17 +5,19 @@
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
 		<div class="well">
-			<form role="form">
+			{{ form_start(form) }}
 				<fieldset>
 					<legend>Create a poll</legend>
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="id1" placeholder="Enter title"/>
+						{{ form_errors(form.title) }}
+						{{ form_widget(form.title, {"attr": {"class": "form-control", "placeholder": "Enter title"} }) }}
 					</div>
 
 					<div class="form-group">
-						<textarea class="form-control" rows="3" id="textArea"
-						          placeholder="Enter short description (optional)"></textarea>
+						{{ form_errors(form.description) }}
+						{{ form_widget(form.description, {"attr": {"class": "form-control", "rows": "3",
+								"placeholder": "Enter short description (optional)"} }) }}
 					</div>
 
 					<div class="form-group">
@@ -37,10 +39,10 @@
 					</div>
 					<div class="pull-right">
 						<button type="button" class="btn btn-success add-question">Add question</button>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						{{ form_widget(form.Submit, {"attr": {"class": "btn btn-primary"}}) }}
 					</div>
 				</fieldset>
-			</form>
+			{{ form_end(form) }}
 		</div>
 	</div>
 {% endblock %}
