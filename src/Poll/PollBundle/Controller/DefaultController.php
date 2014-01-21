@@ -26,8 +26,24 @@ class DefaultController extends Controller
         return $this->render('PollPollBundle:Poll:view_poll.html.twig', array('name' => "smth"));
     }
 
-    public function createpollAction(Request $request) {
+    /**
+     * Create a poll by providing it's title and short description
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function createpollAction(Request $request)
+    {
+        // create here the poll entity, will map everything to it
         $form = $this->createForm(new NewPoll());
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $id = 1;
+            $title = "Some dummy title";
+            return $this->redirect($this->generateUrl('poll_add_question', array("poll_id" => $id)));
+        }
         return $this->render('PollPollBundle:Poll:create_poll.html.twig', array('form' => $form->createView()));
     }
+
 }
