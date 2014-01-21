@@ -22,11 +22,11 @@ class AddQuestion extends AbstractType {
                                     'multiple' => 'Multiple choice question')))
             ->add('question_text', 'text')
             ->add('options', 'textarea', array('required' => False))
-            ->add('addquestion', 'submit', array('label' => 'Add question'));
+            ->add('addquestion', 'submit', array('label' => 'Add more questions'))
+            ->add('done', 'submit', array('label' => 'Done'));
     }
 
     public function getName() {
         return 'addquestion';
     }
-
 } 

@@ -25,7 +25,8 @@
 								"placeholder": "Enter question options (each option on a new line)"} }) }}
 					</div>
 					<div class="pull-right">
-						{{ form_widget(form.addquestion, {"attr": {"class": "btn btn-primary"}}) }}
+						{{ form_widget(form.addquestion, {"attr": {"class": "btn btn-success"}}) }}
+						{{ form_widget(form.done, {"attr": {"class": "btn btn-primary"}}) }}
 					</div>
 				</fieldset>
 			{{ form_end(form) }}
