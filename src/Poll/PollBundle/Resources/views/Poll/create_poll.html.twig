@@ -19,27 +19,8 @@
 						{{ form_widget(form.description, {"attr": {"class": "form-control", "rows": "3",
 								"placeholder": "Enter short description (optional)"} }) }}
 					</div>
-
-					<div class="form-group">
-						<select class="form-control">
-							<option>Select question type</option>
-							<option>Text question</option>
-							<option>Single choice question</option>
-							<option>Multiple choice question</option>
-						</select>
-					</div>
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="id1" placeholder="Enter question"/>
-					</div>
-
-					<div class="form-group">
-						<textarea class="form-control" rows="3" id="textArea"
-						          placeholder="Enter question options (each option on a new line)"></textarea>
-					</div>
 					<div class="pull-right">
-						<button type="button" class="btn btn-success add-question">Add question</button>
-						{{ form_widget(form.Submit, {"attr": {"class": "btn btn-primary"}}) }}
+						{{ form_widget(form.submit, {"attr": {"class": "btn btn-primary"}}) }}
 					</div>
 				</fieldset>
 			{{ form_end(form) }}

@@ -11,7 +11,7 @@ class NewPoll extends AbstractType {
         $builder
             ->add('title', 'text')
             ->add('description', 'textarea', array('required' => False))
-            ->add('Submit', 'submit');
+            ->add('submit', 'submit', array('label' => "Create"));
     }
 
     public function getName() {
