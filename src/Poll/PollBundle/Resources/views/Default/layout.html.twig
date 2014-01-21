@@ -17,8 +17,10 @@
 			<div class="container">
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Create poll</a></li>
+						<li {% if app.request.get('_route') == 'poll_homepage' %} class="active"{% endif %}><a
+									href="{{ path('poll_homepage') }}">Home</a></li>
+						<li {% if app.request.get('_route') == 'poll_create_poll' %} class="active"{% endif %}><a
+									href="{{ path('poll_create_poll') }}">Create poll</a></li>
 						<li><a href="#">Show polls</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
