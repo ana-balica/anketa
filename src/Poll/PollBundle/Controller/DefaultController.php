@@ -8,6 +8,11 @@ use Poll\PollBundle\Form\NewPoll;
 
 class DefaultController extends Controller
 {
+    /**
+     * Homepage of the website
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction()
     {
         return $this->render('PollPollBundle:Default:index.html.twig');
