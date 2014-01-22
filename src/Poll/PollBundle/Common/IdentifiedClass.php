@@ -1,14 +1,22 @@
 <?php
 namespace Poll\PollBundle\Common;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Unikatne identifikovatelny objekt
  *
  * @author kadleto2
+ *
+ * @MappedSuperclass
  */
 abstract class IdentifiedClass implements Identified {
 
-	/** @var string $id */
+	/**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
 	protected $id;
 
 	/**

@@ -3,19 +3,13 @@
 namespace Poll\PollBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Poll\PollBundle\Common\IdentifiedClass;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="User")
  */
-class User {
-
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+class UserModel extends IdentifiedClass {
 
     /**
      * @ORM\Column(type="string", unique=true, length=150)
@@ -51,17 +45,6 @@ class User {
      * @ORM\Column(type="datetime")
      */
     protected $last_login;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set email
