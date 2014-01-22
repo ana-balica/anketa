@@ -1,17 +1,24 @@
 <?php
 namespace Poll\PollBundle\Entity\Choice;
 
+use Doctrine\ORM\Mapping as ORM;
 use Poll\PollBundle\Common\IdentifiedClass;
 use Poll\PollBundle\Common\Collection;
+use Poll\PollBundle\Entity\QuestionImpl;
 
 /**
  * Class OptionImpl
  * An option to a question from a pool of answers
  * @package Poll\PollBundle\Entity\Choice
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="Option")
  */
 abstract class OptionImpl extends IdentifiedClass implements Option {
 
-	/** @var string */
+	/**
+     * @ORM\Column(type="string", length=255)
+     */
 	protected $option;
 
     /** @var Collection */
@@ -20,11 +27,27 @@ abstract class OptionImpl extends IdentifiedClass implements Option {
     /** @var Collection */
     protected $answers;
 
-    /** @var boolean */
+    /**
+     * @ORM\Column(name="is_exclusive", type="boolean")
+     */
     protected $exclusive;
 
-    /** @var boolean */
+    /**
+     * @ORM\Column(name="is_shared", type="boolean")
+     */
     protected $isShared;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Poll\PollBundle\Entity\QuestionImpl")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     */
+    protected $question;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Poll\PollBundle\Entity\QuestionImpl")
+     * @ORM\JoinColumn(name="poll_id", referencedColumnName="id")
+     */
+    protected $poll;
 
     public function __construct() {
         parent::__construct();
@@ -173,4 +196,60 @@ abstract class OptionImpl extends IdentifiedClass implements Option {
 	    $this->exclusive = $exclusive;
         return $this;
 	}
+
+    /**
+     * Set isShared
+     *
+     * @param boolean $isShared
+     * @return OptionImpl
+     */
+    public function setIsShared($isShared){
+        $this->isShared = $isShared;
+        return $this;
+    }
+
+    /**
+     * Get isShared
+     *
+     * @return boolean
+     */
+    public function getIsShared(){
+        return $this->isShared;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \Poll\PollBundle\Entity\QuestionImpl $question
+     * @return OptionImpl
+     */
+    public function setQuestion(QuestionImpl $question = null)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Set poll
+     *
+     * @param \Poll\PollBundle\Entity\QuestionImpl $poll
+     * @return OptionImpl
+     */
+    public function setPoll(QuestionImpl $poll = null)
+    {
+        $this->poll = $poll;
+
+        return $this;
+    }
+
+    /**
+     * Get poll
+     *
+     * @return \Poll\PollBundle\Entity\QuestionImpl
+     */
+    public function getPoll()
+    {
+        return $this->poll;
+    }
 }
