@@ -1,22 +1,37 @@
 <?php
 namespace Poll\PollBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Poll\PollBundle\Common\Collection;
+use Poll\PollBundle\Service\ObjectFactory;
 
 /**
  * Question implementation class
  * @author AnaBalica
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="Question")
  */
 abstract class QuestionImpl extends PollItemImpl implements Question {
 
 	/** @var Collection */
 	protected $items;
 
-	/** @var string */
+	/**
+     * @ORM\Column(type="string", length=255)
+     */
 	protected $question;
 
-    /** @var  int */
+    /**
+     * @ORM\Column(name="question_type", type="integer")
+     */
     protected $questionType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PollImpl")
+     * @ORM\JoinColumn(name="poll_id", referencedColumnName="id")
+     */
+    protected $poll;
 
 	public function __construct() {
 		parent::__construct();
@@ -30,6 +45,16 @@ abstract class QuestionImpl extends PollItemImpl implements Question {
      */
     public function getQuestionType() {
         return $this->questionType;
+    }
+
+    public function setQuestionType($questionType) {
+        if (in_array($questionType, array(
+                ObjectFactory::TEXT_QUESTION,
+                ObjectFactory::SINGLE_CHOICE_QUESTION,
+                ObjectFactory::MULTIPLE_CHOICE_QUESTION)))
+            $this->questionType = $questionType;
+        else
+            throw new \Exception("Invalid question type.");
     }
 
 	/**
