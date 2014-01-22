@@ -1,19 +1,29 @@
 <?php
 namespace Poll\PollBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Poll\PollBundle\Common\Collection;
 use Poll\PollBundle\Common\IdentifiedClass;
 
 /**
  * Implementace entity anketa
  * @author jirkovoj
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="Poll")
  */
 class PollImpl extends IdentifiedClass implements Poll {
 
-	/** @var string */
+    // TODO: Solve the problem with id field which is inherited from IdentifiedClass
+
+	/**
+     * @ORM\Column(type="string", length=255)
+     */
 	protected $title;
 
-	/** @var string */
+	/**
+     * @ORM\Column(type="text")
+     */
 	protected $description;
 
 	/** @var Collection */
