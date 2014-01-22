@@ -14,8 +14,6 @@ use Poll\PollBundle\Common\IdentifiedClass;
  */
 class PollImpl extends IdentifiedClass implements Poll {
 
-    // TODO: Solve the problem with id field which is inherited from IdentifiedClass
-
 	/**
      * @ORM\Column(type="string", length=255)
      */
