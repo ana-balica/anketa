@@ -17,9 +17,9 @@ class AddQuestion extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('type', 'choice', array(
-                'choices' => array('text' => 'Text question',
-                                    'single' => 'Single choice question',
-                                    'multiple' => 'Multiple choice question')))
+                'choices' => array('1' => 'Text question',
+                                    '2' => 'Single choice question',
+                                    '3' => 'Multiple choice question')))
             ->add('question_text', 'text')
             ->add('options', 'textarea', array('required' => False))
             ->add('addquestion', 'submit', array('label' => 'Add more questions'))
