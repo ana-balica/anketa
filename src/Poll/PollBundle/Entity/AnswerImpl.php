@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Poll\PollBundle\Common\IdentifiedClass;
 use Poll\PollBundle\Exception\IncompatibleClassException;
 use Poll\PollBundle\Service\ObjectFactory;
+use Poll\PollBundle\Entity\Choice\OptionImpl;
 
 /**
  * Abstract implementation of Answer class
@@ -147,7 +148,7 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
      * @param \Poll\PollBundle\Entity\PollImpl $poll
      * @return AnswerImpl
      */
-    public function setPoll(\Poll\PollBundle\Entity\PollImpl $poll = null)
+    public function setPoll(PollImpl $poll)
     {
         $this->poll = $poll;
         return $this;
@@ -169,7 +170,7 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
      * @param \Poll\PollBundle\Entity\Choice\OptionImpl $options
      * @return AnswerImpl
      */
-    public function addOption(\Poll\PollBundle\Entity\Choice\OptionImpl $options)
+    public function addOption(OptionImpl $options)
     {
         $this->options[] = $options;
     
@@ -181,7 +182,7 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
      *
      * @param \Poll\PollBundle\Entity\Choice\OptionImpl $options
      */
-    public function removeOption(\Poll\PollBundle\Entity\Choice\OptionImpl $options)
+    public function removeOption(OptionImpl $options)
     {
         $this->options->removeElement($options);
     }
