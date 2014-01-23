@@ -1,22 +1,59 @@
 <?php
 namespace Poll\PollBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use Poll\PollBundle\Common\IdentifiedClass;
 use Poll\PollBundle\Exception\IncompatibleClassException;
+use Poll\PollBundle\Service\ObjectFactory;
 
 /**
  * Abstract implementation of Answer class
  *
  * @author AnaBalica
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="Answer")
  */
 abstract class AnswerImpl extends IdentifiedClass implements Answer {
+
+    /**
+     * @ORM\Column(name="answer_type", type="integer")
+     */
+    protected $answerType;
+
+    /**
+     * @ORM\Column(name="answer_text", type="text")
+     */
+    protected $answerText;
 
     /** @var Respondent */
 	protected $respondent;
 
-    /** @var Question */
+    /**
+     * @ORM\ManyToOne(targetEntity="QuestionImpl")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     */
 	protected $question;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="PollImpl")
+     *  @ORM\JoinColumn(name="poll_id", referencedColumnName="id")
+     */
+    protected $poll;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Poll\PollBundle\Entity\Choice\OptionImpl")
+     * @ORM\JoinTable(name="Answers_Options",
+     *      joinColumns={@ORM\JoinColumn(name="answer_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $options;
+
+    public function __construct() {
+        parent::__construct();
+        $this->options = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 	/**
 	 * Get the respondent of the answer
 	 * @return Respondent
@@ -59,4 +96,103 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
         $this->question->addAnswer($this);
 		return $this;
 	}
+
+    /**
+     * Set answerType
+     *
+     * @param integer $answerType
+     * @return AnswerImpl
+     */
+    public function setAnswerType($answerType)
+    {
+        $this->answerType = $answerType;
+        return $this;
+    }
+
+    /**
+     * Get answerType
+     *
+     * @return integer 
+     */
+    public function getAnswerType()
+    {
+        return $this->answerType;
+    }
+
+    /**
+     * Set answerText
+     *
+     * @param string $answerText
+     * @return AnswerImpl
+     */
+    public function setAnswerText($answerText)
+    {
+        $this->answerText = $answerText;
+        return $this;
+    }
+
+    /**
+     * Get answerText
+     *
+     * @return string 
+     */
+    public function getAnswerText()
+    {
+        return $this->answerText;
+    }
+
+    /**
+     * Set poll
+     *
+     * @param \Poll\PollBundle\Entity\PollImpl $poll
+     * @return AnswerImpl
+     */
+    public function setPoll(\Poll\PollBundle\Entity\PollImpl $poll = null)
+    {
+        $this->poll = $poll;
+        return $this;
+    }
+
+    /**
+     * Get poll
+     *
+     * @return \Poll\PollBundle\Entity\PollImpl 
+     */
+    public function getPoll()
+    {
+        return $this->poll;
+    }
+
+    /**
+     * Add options
+     *
+     * @param \Poll\PollBundle\Entity\Choice\OptionImpl $options
+     * @return AnswerImpl
+     */
+    public function addOption(\Poll\PollBundle\Entity\Choice\OptionImpl $options)
+    {
+        $this->options[] = $options;
+    
+        return $this;
+    }
+
+    /**
+     * Remove options
+     *
+     * @param \Poll\PollBundle\Entity\Choice\OptionImpl $options
+     */
+    public function removeOption(\Poll\PollBundle\Entity\Choice\OptionImpl $options)
+    {
+        $this->options->removeElement($options);
+    }
+
+    /**
+     * Get options
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
 }
