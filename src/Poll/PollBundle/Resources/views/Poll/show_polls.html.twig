@@ -4,8 +4,8 @@
 {% block content %}
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		{% for title in titles %}
-			<div class="well"><h4><a href="">{{ title }}</a></h4></div>
+		{% for poll in polls %}
+			<div class="well"><h4><a href="{{ path('poll_show_one', {'poll_id': poll.id}) }}">{{ poll.title }}</a></h4></div>
 		{% endfor %}
 	</div>
 {% endblock %}

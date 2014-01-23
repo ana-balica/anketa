@@ -101,11 +101,7 @@ class DefaultController extends Controller
     public function showpollsAction()
     {
         $polls = $this->getDoctrine()->getRepository('PollPollBundle:PollImpl')->findAll();
-        $titles = array();
-        foreach ($polls as $poll) {
-            $titles[] = $poll->getTitle();
-        }
-        return $this->render('PollPollBundle:Poll:show_polls.html.twig', array("titles" => array_reverse($titles)));
+        return $this->render('PollPollBundle:Poll:show_polls.html.twig', array("polls" => array_reverse($polls)));
     }
 
     public function showpollAction(Request $request, $poll_id) {
