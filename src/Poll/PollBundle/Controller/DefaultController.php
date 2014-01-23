@@ -37,7 +37,7 @@ class DefaultController extends Controller
      * Display and submit a form with a poll by providing it's title and short description
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createpollAction(Request $request)
     {
