@@ -14,7 +14,7 @@ use Poll\PollBundle\Entity\QuestionImpl;
  * @ORM\Entity
  * @ORM\Table(name="`Option`")
  */
-abstract class OptionImpl extends IdentifiedClass implements Option {
+class OptionImpl extends IdentifiedClass implements Option {
 
 	/**
      * @ORM\Column(type="string", length=255)
