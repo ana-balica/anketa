@@ -45,8 +45,10 @@
 {% endblock %}
 
 {% block javascripts %}
-	{% javascripts '@js_bootstrap' %}
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="{{ asset_url }}"></script>
+	{% javascripts
+		'@js_bootstrap'
+		'@PollPollBundle/Resources/public/js/script.js' %}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}
