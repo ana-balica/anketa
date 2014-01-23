@@ -2,9 +2,6 @@ poll_homepage:
     pattern:  /
     defaults: { _controller: PollPollBundle:Default:index }
 
-poll_view_poll:
-    pattern: /test_poll
-    defaults: { _controller: PollPollBundle:Default:poll }
 poll_show_one:
     pattern: /poll/{poll_id}
     defaults: { _controller: PollPollBundle:Default:showpoll }
@@ -20,7 +17,3 @@ poll_create_poll:
 poll_add_question:
     pattern: /poll/{poll_id}/add_question
     defaults: { _controller: PollPollBundle:Default:addquestion }
-
-poll_show:
-    pattern: /poll/{poll_id}
-    defaults: { _controller: PollPollBundle:Default:showpoll }
