@@ -21,7 +21,8 @@
 									href="{{ path('poll_homepage') }}">Home</a></li>
 						<li {% if app.request.get('_route') == 'poll_create_poll' %} class="active"{% endif %}><a
 									href="{{ path('poll_create_poll') }}">Create poll</a></li>
-						<li><a href="#">Show polls</a></li>
+						<li {% if app.request.get('_route') == 'poll_show_all' %} class="active"{% endif %}><a
+									href="{{ path('poll_show_all') }}">Show polls</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">Register</a></li>
