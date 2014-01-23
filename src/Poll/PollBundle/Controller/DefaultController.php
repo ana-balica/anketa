@@ -98,6 +98,16 @@ class DefaultController extends Controller
             'title' => $title));
     }
 
+    public function showpollsAction()
+    {
+        $polls = $this->getDoctrine()->getRepository('PollPollBundle:PollImpl')->findAll();
+        $titles = array();
+        foreach ($polls as $poll) {
+            $titles[] = $poll->getTitle();
+        }
+        return $this->render('PollPollBundle:Poll:show_polls.html.twig', array("titles" => array_reverse($titles)));
+    }
+
     public function showpollAction(Request $request, $poll_id) {
         return $this->render('PollPollBundle:Default:index.html.twig');
     }
