@@ -12,7 +12,7 @@ use Poll\PollBundle\Entity\QuestionImpl;
  * @package Poll\PollBundle\Entity\Choice
  *
  * @ORM\Entity
- * @ORM\Table(name="Option")
+ * @ORM\Table(name="`Option`")
  */
 abstract class OptionImpl extends IdentifiedClass implements Option {
 
