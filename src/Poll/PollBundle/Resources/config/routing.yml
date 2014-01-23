@@ -5,6 +5,9 @@ poll_homepage:
 poll_view_poll:
     pattern: /test_poll
     defaults: { _controller: PollPollBundle:Default:poll }
+poll_show_all:
+    pattern: /polls
+    defaults: { _controller: PollPollBundle:Default:showpolls }
 
 poll_create_poll:
     pattern: /create_poll
