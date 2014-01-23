@@ -31,7 +31,7 @@ class QuestionImpl extends PollItemImpl implements Question {
      * @ORM\ManyToOne(targetEntity="PollImpl")
      * @ORM\JoinColumn(name="poll_id", referencedColumnName="id")
      */
-    protected $poll;
+    protected $poll_id;
 
 	public function __construct() {
 		parent::__construct();
@@ -48,13 +48,16 @@ class QuestionImpl extends PollItemImpl implements Question {
     }
 
     public function setQuestionType($questionType) {
+        $questionTyple = intval($questionType);
         if (in_array($questionType, array(
                 ObjectFactory::TEXT_QUESTION,
                 ObjectFactory::SINGLE_CHOICE_QUESTION,
-                ObjectFactory::MULTIPLE_CHOICE_QUESTION)))
+                ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
             $this->questionType = $questionType;
-        else
+        }
+        else {
             throw new \Exception("Invalid question type.");
+        }
     }
 
 	/**
@@ -76,6 +79,26 @@ class QuestionImpl extends PollItemImpl implements Question {
 		$this->question = $question;
 		return $this;
 	}
+
+    /**
+     * Get poll_id
+     *
+     * @return string
+     */
+    public function getPollId() {
+        return $this->poll_id;
+    }
+
+    /**
+     * Get poll_id
+     *
+     * @param string $poll_id
+     * @return Poll\PollBundle\Entity\QuestionImpl
+     */
+    public function setPollId($poll_id) {
+        $this->poll_id = $poll_id;
+        return $this;
+    }
 
 	/**
 	 * Add an answer to the question
