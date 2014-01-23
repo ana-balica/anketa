@@ -13,9 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class IdentifiedClass implements Identified {
 
 	/**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=13)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
 	protected $id;
 
