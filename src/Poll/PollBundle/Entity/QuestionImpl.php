@@ -12,7 +12,7 @@ use Poll\PollBundle\Service\ObjectFactory;
  * @ORM\Entity
  * @ORM\Table(name="Question")
  */
-abstract class QuestionImpl extends PollItemImpl implements Question {
+class QuestionImpl extends PollItemImpl implements Question {
 
 	/** @var Collection */
 	protected $items;
