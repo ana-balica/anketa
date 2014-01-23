@@ -4,6 +4,7 @@ namespace Poll\PollBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Poll\PollBundle\Entity\PollImpl;
 use Poll\PollBundle\Form\NewPoll;
 use Poll\PollBundle\Form\AddQuestion;
 
@@ -40,13 +41,15 @@ class DefaultController extends Controller
      */
     public function createpollAction(Request $request)
     {
-        // create here the poll entity, will map everything to it
-        $form = $this->createForm(new NewPoll());
+        $poll = new PollImpl();
+        $form = $this->createForm(new NewPoll(), $poll);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $id = 1;
-            $title = "Some dummy title";
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($poll);
+            $em->flush();
+            $id = $poll->getId();
             return $this->redirect($this->generateUrl('poll_add_question', array("poll_id" => $id)));
         }
         return $this->render('PollPollBundle:Poll:create_poll.html.twig', array('form' => $form->createView()));
