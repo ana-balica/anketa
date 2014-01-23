@@ -5,8 +5,11 @@ namespace Poll\PollBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Poll\PollBundle\Entity\PollImpl;
+use Poll\PollBundle\Entity\QuestionImpl;
+use Poll\PollBundle\Entity\Choice\OptionImpl;
 use Poll\PollBundle\Form\NewPoll;
 use Poll\PollBundle\Form\AddQuestion;
+use Poll\PollBundle\Service\ObjectFactory;
 
 class DefaultController extends Controller
 {
@@ -64,14 +67,43 @@ class DefaultController extends Controller
      */
     public function addquestionAction(Request $request, $poll_id)
     {
-//        \Doctrine\Common\Util\Debug::dump($poll_id);
-//        Extract the title of the poll
-        $title = "Some dummy title";
+        $em = $this->getDoctrine()->getManager();
+        $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
+        $title = $poll->getTitle();
+
         $form = $this->createForm(new AddQuestion());
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $next_action = $form->get('done')->isClicked() ? 'poll_show' : 'poll_add_question';
+            $data = $form->getViewData();
+            // create question entity and fill the data
+            $question = new QuestionImpl();
+            $question->setPollId($poll);
+            $question->setQuestionType($data["type"]);
+            $question->setQuestion($data["question_text"]);
+            $em->persist($question);
+            $em->flush();
+
+            if (in_array($data["type"], array(
+                    ObjectFactory::SINGLE_CHOICE_QUESTION,
+                    ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
+                $options = $data["options"];
+                $options = preg_split('/\R/', $options);
+
+                $question_entity = $em->getRepository('PollPollBundle:QuestionImpl')->find($question->getId());
+
+                foreach ($options as $opt) {
+                    // create option entity and fill the data
+                    $option = new OptionImpl();
+                    $option->setPoll($poll);
+                    $option->setOption($opt);
+                    $option->setQuestion($question_entity);
+                    $em->persist($option);
+                }
+                $em->flush();
+            }
+
+            $next_action = $form->get('done')->isClicked() ? 'poll_show_one' : 'poll_add_question';
             return $this->redirect($this->generateUrl($next_action, array("poll_id" => $poll_id)));
         }
         return $this->render('PollPollBundle:Poll:add_question.html.twig', array(
