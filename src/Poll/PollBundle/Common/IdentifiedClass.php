@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author kadleto2
  *
- * @MappedSuperclass
+ * @ORM\MappedSuperclass
  */
 abstract class IdentifiedClass implements Identified {
 
