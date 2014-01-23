@@ -20,7 +20,7 @@ class PollImpl extends IdentifiedClass implements Poll {
 	protected $title;
 
 	/**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=True)
      */
 	protected $description;
 
