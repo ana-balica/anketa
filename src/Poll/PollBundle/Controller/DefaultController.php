@@ -99,6 +99,11 @@ class DefaultController extends Controller
             'title' => $title));
     }
 
+    /**
+     * List all the polls by providing the titles and linking them to the full poll representations
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showpollsAction()
     {
         $polls = $this->getDoctrine()->getRepository('PollPollBundle:PollImpl')->findAll();
