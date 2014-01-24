@@ -166,8 +166,18 @@ class DefaultController extends Controller
         $form = $form->getForm();
 
         return $this->render('PollPollBundle:Poll:show_poll.html.twig', array(
+            'id' => $poll_id,
             'title' => $title,
             'description' => $description,
             'form' => $form->createView()));
+    }
+
+    public function deletepollAction($poll_id) {
+        $em = $this->getDoctrine()->getManager();
+        $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
+        $em->remove($poll);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('poll_show_all'));
     }
 }
