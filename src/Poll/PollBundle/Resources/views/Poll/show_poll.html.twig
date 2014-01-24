@@ -1,67 +1,19 @@
 {# src/Poll/PollBundle/Resources/views/Poll/view_poll.html.twig #}
 {% extends 'PollPollBundle:Default:layout.html.twig' %}
 
+{% form_theme form 'PollPollBundle:Theme:form_fields.html.twig' %}
+
 {% block content %}
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
 		<div class="well">
-			<form role="form">
+			<div>
 				<fieldset>
-					<legend>Title of the poll</legend>
+					<legend>{{ title }}</legend>
 
-					<p class="help-block">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Enim id provident quas veritatis. Architecto
-						at aut commodi culpa cupiditate debitis dolorem, dolores fugiat
-						itaque magnam sapiente, soluta suscipit, tenetur veniam!</p>
+					<p class="help-block">{{ description }}</p>
+					{{ form_widget(form) }}
 
-					<div class="form-group">
-						<label for="textQuestion">1. This is a text question</label>
-						<textarea class="form-control" rows="3" id="textArea"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="singleChoice">2. This is a single choice
-							question</label>
-
-						<div class="radio">
-							<label>
-								<input type="radio" name="optionsRadios"
-								       id="optionsRadios1" value="option1" checked>
-								Option one is this and that&mdash;be sure to include why
-								it's great
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-								<input type="radio" name="optionsRadios"
-								       id="optionsRadios2" value="option2">
-								Option two can be something else and selecting it will deselect option one
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="multiChoice">3. This is a multiple choice question</label>
-
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="">
-								Option one
-							</label>
-						</div>
-
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="">
-								Option two
-							</label>
-						</div>
-
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="">
-								Option three
-							</label>
-						</div>
-					</div>
 					<div class="pull-right">
 						<button type="submit" class="btn btn-primary">Submit</button>
 						<div class="btn-group">
@@ -77,7 +29,7 @@
 						</div>
 					</div>
 				</fieldset>
-			</form>
+			</div>
 		</div>
 	</div>
 {% endblock %}
