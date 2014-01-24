@@ -36,6 +36,10 @@ textarea {
 	margin-top: 0;
 }
 
+.mr10 {
+	margin-right: 10px;
+}
+
 /* Base layout and main components */
 #wrap {
 	min-height: 100%;

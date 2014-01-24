@@ -26,3 +26,11 @@
     </div>
 {% endspaceless %}
 {% endblock choice_widget_expanded %}
+
+{% block button_row %}
+{% spaceless %}
+    <div class="pull-right">
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock button_row %}
