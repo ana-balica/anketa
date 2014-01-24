@@ -159,6 +159,10 @@ class DefaultController extends Controller
                 ));
             }
         }
+        $form->add('submit', 'submit', array(
+            'label' => "Submit",
+            'attr' => array(
+                'class' => 'btn btn-primary')));
         $form = $form->getForm();
 
         return $this->render('PollPollBundle:Poll:show_poll.html.twig', array(
