@@ -10,6 +10,7 @@ use Poll\PollBundle\Entity\Choice\OptionImpl;
 use Poll\PollBundle\Form\NewPoll;
 use Poll\PollBundle\Form\AddQuestion;
 use Poll\PollBundle\Service\ObjectFactory;
+use Poll\PollBundle\Query\PollQuery;
 
 class DefaultController extends Controller
 {
@@ -119,15 +120,9 @@ class DefaultController extends Controller
         $title = $poll->getTitle();
         $description = $poll->getDescription();
 
-        // get all question
-        $query = $em->createQueryBuilder()
-            ->select('q')
-            ->from('PollPollBundle:QuestionImpl', 'q')
-            ->where('q.poll_id = ?1')
-            ->setParameter(1, $poll_id)
-            ->getQuery();
+        $q = new PollQuery($em);
+        $questions = $q->getQuestionsByPollId($poll_id);
 
-        $questions = $query->getResult();
         $form = $this->createFormBuilder();
         foreach ($questions as $question) {
             $type = $question->getQuestionType();
@@ -146,13 +141,7 @@ class DefaultController extends Controller
             }
             if (in_array($type, array(ObjectFactory::SINGLE_CHOICE_QUESTION, ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
                 $question_id = $question->getId();
-                $query = $em->createQueryBuilder()
-                    ->select('o')
-                    ->from('PollPollBundle:Choice\OptionImpl', 'o')
-                    ->where('o.question = ?1')
-                    ->setParameter(1, $question_id)
-                    ->getQuery();
-                $options = $query->getArrayResult();
+                $options = $q->getOptionsArrayByQuestionId($question_id);
                 $form_options = array();
                 foreach ($options as $option) {
                     array_push($form_options, array($option['id'] => $option['option']));
@@ -167,9 +156,6 @@ class DefaultController extends Controller
         }
         $form = $form->getForm();
 
-        // based on questions create a form
-
-        // render the form
         return $this->render('PollPollBundle:Poll:show_poll.html.twig', array(
             'title' => $title,
             'description' => $description,
