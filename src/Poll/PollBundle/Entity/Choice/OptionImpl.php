@@ -40,13 +40,13 @@ class OptionImpl extends IdentifiedClass implements Option {
 
     /**
      * @ORM\ManyToOne(targetEntity="Poll\PollBundle\Entity\QuestionImpl")
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $question;
 
     /**
      * @ORM\ManyToOne(targetEntity="Poll\PollBundle\Entity\PollImpl")
-     * @ORM\JoinColumn(name="poll_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="poll_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $poll;
 

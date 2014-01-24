@@ -32,13 +32,13 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
 
     /**
      * @ORM\ManyToOne(targetEntity="QuestionImpl")
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", onDelete="CASCADE")
      */
 	protected $question;
 
     /**
      * @ORM\ManyToOne(targetEntity="PollImpl")
-     *  @ORM\JoinColumn(name="poll_id", referencedColumnName="id")
+     *  @ORM\JoinColumn(name="poll_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $poll;
 
