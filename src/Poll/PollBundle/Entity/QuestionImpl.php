@@ -4,6 +4,7 @@ namespace Poll\PollBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Poll\PollBundle\Common\Collection;
 use Poll\PollBundle\Service\ObjectFactory;
+use Poll\PollBundle\Entity\UniversalQuestion;
 
 /**
  * Question implementation class
@@ -146,4 +147,18 @@ class QuestionImpl extends PollItemImpl implements Question {
 	public function hasAnswer(Answer $answer) {
 		return $this->items->hasItem($answer);
 	}
+
+    /**
+     * Populate the question with type and question attributes from UniversalQuestion.
+     * Used for saving data from the editquestion form.
+     *
+     * @param UniversalQuestion $universal_question
+     * @return $this
+     */
+    public function populateQuestion(UniversalQuestion $universal_question) {
+        $this->questionType = $universal_question->getType();
+        $this->question = $universal_question->getQuestion();
+
+        return $this;
+    }
 }
