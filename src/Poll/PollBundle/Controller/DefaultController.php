@@ -247,6 +247,13 @@ class DefaultController extends Controller
         return $this->render('PollPollBundle:Poll:edit_question.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * Add and save to db answers to a varying number of questions of a poll
+     *
+     * @param Request $request
+     * @param string $poll_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function addanswersAction(Request $request, $poll_id) {
         $em = $this->getDoctrine()->getManager();
         $pq = new PollQuery($em);
