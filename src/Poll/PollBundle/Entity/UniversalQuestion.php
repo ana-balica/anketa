@@ -3,7 +3,6 @@ namespace Poll\PollBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Poll\PollBundle\Common\IdentifiedClass;
-use Poll\PollBundle\Entity\Choice\OptionImpl;
 
 /**
  * A universal question implementation class used as a form entity
