@@ -104,6 +104,14 @@ class DefaultController extends Controller
         return $this->render('PollPollBundle:Poll:show_polls.html.twig', array("polls" => array_reverse($polls)));
     }
 
+    /**
+     * Show poll and display its title, description, all questions with all available options
+     *
+     * @param Request $request
+     * @param string $poll_id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
     public function showpollAction(Request $request, $poll_id)
     {
         $em = $this->getDoctrine()->getManager();
