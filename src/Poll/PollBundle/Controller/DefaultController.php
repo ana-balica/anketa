@@ -8,7 +8,7 @@ use Poll\PollBundle\Entity\PollImpl;
 use Poll\PollBundle\Entity\QuestionImpl;
 use Poll\PollBundle\Entity\Choice\OptionImpl;
 use Poll\PollBundle\Form\NewPoll;
-use Poll\PollBundle\Form\AddQuestion;
+use Poll\PollBundle\Form\SelectQuestionType;
 use Poll\PollBundle\Service\ObjectFactory;
 use Poll\PollBundle\Query\PollQuery;
 
@@ -59,7 +59,7 @@ class DefaultController extends Controller
         $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
         $title = $poll->getTitle();
 
-        $form = $this->createForm(new AddQuestion());
+        $form = $this->createForm(new SelectQuestionType());
 
         $form->handleRequest($request);
         if ($form->isValid()) {
