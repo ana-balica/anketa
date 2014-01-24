@@ -104,7 +104,67 @@ class DefaultController extends Controller
         return $this->render('PollPollBundle:Poll:show_polls.html.twig', array("polls" => array_reverse($polls)));
     }
 
-    public function showpollAction(Request $request, $poll_id) {
-        return $this->render('PollPollBundle:Default:index.html.twig');
+    public function showpollAction(Request $request, $poll_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
+        $title = $poll->getTitle();
+        $description = $poll->getDescription();
+
+        // get all question
+        $query = $em->createQueryBuilder()
+            ->select('q')
+            ->from('PollPollBundle:QuestionImpl', 'q')
+            ->where('q.poll_id = ?1')
+            ->setParameter(1, $poll_id)
+            ->getQuery();
+
+        $questions = $query->getResult();
+        $form = $this->createFormBuilder();
+        foreach ($questions as $question) {
+            $type = $question->getQuestionType();
+            if ($type == ObjectFactory::TEXT_QUESTION) {
+                $form->add($question->getId(), 'textarea', array(
+                    'label' => $question->getQuestion()));
+            } else if ($type == ObjectFactory::SINGLE_CHOICE_QUESTION) {
+                $expanded = True;
+                $multiple = False;
+
+            } else if ($type == ObjectFactory::MULTIPLE_CHOICE_QUESTION) {
+                $expanded = True;
+                $multiple = True;
+            } else {
+                throw new \Exception("Invalid question type");
+            }
+            if (in_array($type, array(ObjectFactory::SINGLE_CHOICE_QUESTION, ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
+                $question_id = $question->getId();
+                $query = $em->createQueryBuilder()
+                    ->select('o')
+                    ->from('PollPollBundle:Choice\OptionImpl', 'o')
+                    ->where('o.question = ?1')
+                    ->setParameter(1, $question_id)
+                    ->getQuery();
+                $options = $query->getArrayResult();
+                $form_options = array();
+                foreach ($options as $option) {
+                    array_push($form_options, array($option['id'] => $option['option']));
+                }
+                $form->add($question->getId(), 'choice', array(
+                    'choices' => $form_options,
+                    'label' => $question->getQuestion(),
+                    'expanded' => $expanded,
+                    'multiple' => $multiple
+                ));
+            }
+        }
+        $form = $form->getForm();
+
+        // based on questions create a form
+
+        // render the form
+        return $this->render('PollPollBundle:Poll:show_poll.html.twig', array(
+            'title' => $title,
+            'description' => $description,
+            'form' => $form->createView()));
     }
 }
