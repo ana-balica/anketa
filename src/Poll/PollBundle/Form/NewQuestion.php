@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ana
- * Date: 1/21/14
- * Time: 12:42 PM
- */
 
 namespace Poll\PollBundle\Form;
 
@@ -12,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
-class AddQuestion extends AbstractType {
+class NewQuestion extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
