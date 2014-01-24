@@ -9,6 +9,7 @@ use Poll\PollBundle\Entity\QuestionImpl;
 use Poll\PollBundle\Entity\Choice\OptionImpl;
 use Poll\PollBundle\Form\NewPoll;
 use Poll\PollBundle\Form\SelectQuestionType;
+use Poll\PollBundle\Form\DynamicQuestion;
 use Poll\PollBundle\Service\ObjectFactory;
 use Poll\PollBundle\Query\PollQuery;
 
@@ -129,42 +130,16 @@ class DefaultController extends Controller
         $questions = $q->getQuestionsByPollId($poll_id);
 
         $form = $this->createFormBuilder();
+        $dq = new DynamicQuestion($form, $em);
         foreach ($questions as $question) {
-            $type = $question->getQuestionType();
-            if ($type == ObjectFactory::TEXT_QUESTION) {
-                $form->add($question->getId(), 'textarea', array(
-                    'label' => $question->getQuestion()));
-            } else if ($type == ObjectFactory::SINGLE_CHOICE_QUESTION) {
-                $expanded = True;
-                $multiple = False;
-
-            } else if ($type == ObjectFactory::MULTIPLE_CHOICE_QUESTION) {
-                $expanded = True;
-                $multiple = True;
-            } else {
-                throw new \Exception("Invalid question type");
-            }
-            if (in_array($type, array(ObjectFactory::SINGLE_CHOICE_QUESTION, ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
-                $question_id = $question->getId();
-                $options = $q->getOptionsArrayByQuestionId($question_id);
-                $form_options = array();
-                foreach ($options as $option) {
-                    array_push($form_options, array($option['id'] => $option['option']));
-                }
-                $form->add($question->getId(), 'choice', array(
-                    'choices' => $form_options,
-                    'label' => $question->getQuestion(),
-                    'expanded' => $expanded,
-                    'multiple' => $multiple
-                ));
-            }
+            $form = $dq->buildQuestion($question);
         }
         $form->add('submit', 'submit', array(
             'label' => "Submit",
             'attr' => array(
-                'class' => 'btn btn-primary')));
-        $form = $form->getForm();
+            'class' => 'btn btn-primary')));
 
+        $form = $form->getForm();
         return $this->render('PollPollBundle:Poll:show_poll.html.twig', array(
             'id' => $poll_id,
             'title' => $title,
