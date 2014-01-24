@@ -172,6 +172,12 @@ class DefaultController extends Controller
             'form' => $form->createView()));
     }
 
+    /**
+     * Delete a poll with all it's questions, answers and options
+     *
+     * @param string $poll_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deletepollAction($poll_id) {
         $em = $this->getDoctrine()->getManager();
         $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
