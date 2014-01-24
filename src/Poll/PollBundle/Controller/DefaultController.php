@@ -208,4 +208,20 @@ class DefaultController extends Controller
         }
         return $this->render('PollPollBundle:Poll:edit_poll.html.twig', array('form' => $form->createView()));
     }
+
+    /**
+     * Delete a question
+     *
+     * @param string $question_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deletequestionAction($question_id) {
+        $em = $this->getDoctrine()->getManager();
+        $question = $em->getRepository('PollPollBundle:QuestionImpl')->find($question_id);
+        $poll_id = $question->getPollId()->getId();
+        $em->remove($question);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('poll_show_one', array("poll_id" => $poll_id)));
+    }
 }

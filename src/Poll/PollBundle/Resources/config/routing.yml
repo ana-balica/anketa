@@ -25,3 +25,7 @@ poll_delete_poll:
 poll_edit_poll:
     pattern: /edit/poll/{poll_id}
     defaults: { _controller: PollPollBundle:Default:editpoll }
+
+poll_delete_question:
+    pattern: /delete/question/{question_id}
+    defaults: { _controller: PollPollBundle:Default:deletequestion }
