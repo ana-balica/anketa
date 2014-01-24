@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Poll\PollBundle\Entity\PollImpl;
 use Poll\PollBundle\Entity\QuestionImpl;
+use Poll\PollBundle\Entity\AnswerImpl;
 use Poll\PollBundle\Entity\UniversalQuestion;
 use Poll\PollBundle\Entity\Choice\OptionImpl;
 use Poll\PollBundle\Form\NewPoll;
@@ -137,6 +138,7 @@ class DefaultController extends Controller
         foreach ($questions as $question) {
             $form = $dq->buildQuestion($question);
         }
+        $form->setAction($this->generateUrl('poll_add_answers', array('poll_id' => $poll_id)));
         $form->add('submit', 'submit', array(
             'label' => "Submit",
             'attr' => array(
@@ -243,5 +245,28 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('poll_show_one', array("poll_id" => $question->getPollId()->getId())));
         }
         return $this->render('PollPollBundle:Poll:edit_question.html.twig', array('form' => $form->createView()));
+    }
+
+    public function addanswersAction(Request $request, $poll_id) {
+        $em = $this->getDoctrine()->getManager();
+        $pq = new PollQuery($em);
+        $questions = $pq->getQuestionsByPollId($poll_id);
+
+        $form_data = $request->request->get('form');
+
+        foreach($questions as $question) {
+            $question_id = $question->getId();
+            $answer_text = $form_data[$question_id];
+            $answer = new AnswerImpl();
+            $answer->setAnswerType($question->getQuestionType());
+            $answer->setAnswerText($answer_text);
+            $answer->setQuestionEntity($question);
+            $answer->setPoll($question->getPollId());
+
+            $em->persist($answer);
+        }
+
+        $em->flush();
+        return $this->redirect($this->generateUrl('poll_show_all'));
     }
 }
