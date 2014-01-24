@@ -15,7 +15,7 @@ use Poll\PollBundle\Entity\Choice\OptionImpl;
  * @ORM\Entity
  * @ORM\Table(name="Answer")
  */
-abstract class AnswerImpl extends IdentifiedClass implements Answer {
+class AnswerImpl extends IdentifiedClass implements Answer {
 
     /**
      * @ORM\Column(name="answer_type", type="integer")
@@ -97,6 +97,11 @@ abstract class AnswerImpl extends IdentifiedClass implements Answer {
         $this->question->addAnswer($this);
 		return $this;
 	}
+
+    public function setQuestionEntity(Question $question) {
+        $this->question = $question;
+        return $this;
+    }
 
     /**
      * Set answerType
