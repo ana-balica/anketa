@@ -186,4 +186,26 @@ class DefaultController extends Controller
 
         return $this->redirect($this->generateUrl('poll_show_all'));
     }
+
+    /**
+     * Edit a poll: edit the title and the description
+     *
+     * @param Request $request
+     * @param string $poll_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editpollAction(Request $request, $poll_id) {
+        $em = $this->getDoctrine()->getManager();
+        $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
+
+        $form = $this->createForm(new NewPoll(), $poll);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($poll);
+            $em->flush();
+            return $this->redirect($this->generateUrl('poll_show_one', array("poll_id" => $poll_id)));
+        }
+        return $this->render('PollPollBundle:Poll:edit_poll.html.twig', array('form' => $form->createView()));
+    }
 }

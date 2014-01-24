@@ -21,3 +21,7 @@ poll_add_question:
 poll_delete_poll:
     pattern: /delete/poll/{poll_id}
     defaults: { _controller: PollPollBundle:Default:deletepoll }
+
+poll_edit_poll:
+    pattern: /edit/poll/{poll_id}
+    defaults: { _controller: PollPollBundle:Default:editpoll }
