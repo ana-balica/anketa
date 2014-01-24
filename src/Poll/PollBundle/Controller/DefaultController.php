@@ -6,12 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Poll\PollBundle\Entity\PollImpl;
 use Poll\PollBundle\Entity\QuestionImpl;
+use Poll\PollBundle\Entity\UniversalQuestion;
 use Poll\PollBundle\Entity\Choice\OptionImpl;
 use Poll\PollBundle\Form\NewPoll;
 use Poll\PollBundle\Form\NewQuestion;
 use Poll\PollBundle\Form\DynamicQuestion;
+use Poll\PollBundle\Form\EditQuestion;
 use Poll\PollBundle\Service\ObjectFactory;
 use Poll\PollBundle\Query\PollQuery;
+
 
 class DefaultController extends Controller
 {
@@ -198,5 +201,23 @@ class DefaultController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('poll_show_one', array("poll_id" => $poll_id)));
+    }
+
+    public function editquestionAction(Request $request, $question_id) {
+        $em = $this->getDoctrine()->getManager();
+        $question = $em->getRepository('PollPollBundle:QuestionImpl')->find($question_id);
+        $pq = new PollQuery($em);
+        $options = $pq->getOptionsByQuestionId($question_id);
+        $universal_question = new UniversalQuestion();
+        $universal_question->populateQuestion($question);
+        $universal_question->populateOptions($options);
+
+        $form = $this->createForm(new EditQuestion(), $universal_question);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            // persist the data
+            return $this->redirect($this->generateUrl('poll_show_one', array("poll_id" => $question->getPollId()->getId())));
+        }
+        return $this->render('PollPollBundle:Poll:edit_question.html.twig', array('form' => $form->createView()));
     }
 }
