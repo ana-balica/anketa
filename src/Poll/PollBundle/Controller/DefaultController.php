@@ -208,6 +208,7 @@ class DefaultController extends Controller
         $question = $em->getRepository('PollPollBundle:QuestionImpl')->find($question_id);
         $pq = new PollQuery($em);
         $options = $pq->getOptionsByQuestionId($question_id);
+
         $universal_question = new UniversalQuestion();
         $universal_question->populateQuestion($question);
         $universal_question->populateOptions($options);
@@ -215,7 +216,30 @@ class DefaultController extends Controller
         $form = $this->createForm(new EditQuestion(), $universal_question);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            // persist the data
+            $question = $question->populateQuestion($universal_question);
+            $em->persist($question);
+
+            foreach ($options as $option) {
+                $em->remove($option);
+            }
+
+            if (in_array($universal_question->getType(), array(
+                    ObjectFactory::SINGLE_CHOICE_QUESTION,
+                    ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
+                $options = $universal_question->getOptions();
+                $options = preg_split('/\R/', $options);
+                $poll = $question->getPollId();
+
+                foreach ($options as $opt) {
+                    $option = new OptionImpl();
+                    $option->setPoll($poll);
+                    $option->setOption($opt);
+                    $option->setQuestion($question);
+                    $em->persist($option);
+                }
+            }
+
+            $em->flush();
             return $this->redirect($this->generateUrl('poll_show_one', array("poll_id" => $question->getPollId()->getId())));
         }
         return $this->render('PollPollBundle:Poll:edit_question.html.twig', array('form' => $form->createView()));
