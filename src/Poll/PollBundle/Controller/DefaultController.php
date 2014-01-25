@@ -297,4 +297,48 @@ class DefaultController extends Controller
         $em->flush();
         return $this->redirect($this->generateUrl('poll_show_all'));
     }
+
+    /**
+     * Display results of a poll
+     *
+     * @param string $poll_id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function resultsAction($poll_id) {
+        $em = $this->getDoctrine()->getManager();
+        $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
+        $pq = new PollQuery($em);
+        $questions = $pq->getQuestionsByPollId($poll_id);
+        $results = array();
+        $pq = new PollQuery($em);
+        foreach ($questions as $key=>$question) {
+            $question_id = $question->getId();
+            $question_type = $question->getQuestionType();
+            $results[$key] = array("question" => $question->getQuestion());
+
+            $answers = $pq->getAnswersByQuestionId($question_id);
+            $answer_texts = array();
+            foreach ($answers as $answer) {
+                $answer_texts[] = $answer->getAnswerText();
+            }
+
+            if ($question_type == ObjectFactory::TEXT_QUESTION) {
+                $results[$key]["answers"] = $answer_texts;
+            } else if (in_array($question_type, array(
+                    ObjectFactory::SINGLE_CHOICE_QUESTION,
+                    ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
+                $options = $pq->getOptionsByQuestionId($question_id);
+                $results[$key]['answers'] = array();
+                foreach ($options as $option) {
+                    $count = $pq->getAnswerCountryByOptionId($option);
+                    $option_text = $option->getOption();
+                    $results[$key]['answers'][] = $count . " - " . $option_text;
+                }
+            } else {
+                throw new \Exception("Invalid question type");
+            }
+        }
+        return $this->render('PollPollBundle:Poll:poll_results.html.twig', array('poll' => $poll, 'results' => $results));
+    }
 }

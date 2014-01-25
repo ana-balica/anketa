@@ -37,3 +37,7 @@ poll_edit_question:
 poll_add_answers:
     pattern: /add/answers/{poll_id}
     defaults: { _controller: PollPollBundle:Default:addanswers }
+
+poll_view_results:
+    pattern: /results/{poll_id}
+    defaults: { _controller: PollPollBundle:Default:results }
