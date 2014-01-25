@@ -13,7 +13,8 @@ class NewQuestion extends AbstractType {
             ->add('type', 'choice', array(
                 'choices' => array('1' => 'Text question',
                                     '2' => 'Single choice question',
-                                    '3' => 'Multiple choice question')))
+                                    '3' => 'Multiple choice question'),
+                        'data' => 1))
             ->add('question_text', 'text')
             ->add('options', 'textarea', array('required' => False))
             ->add('addquestion', 'submit', array('label' => 'Add more questions'))
