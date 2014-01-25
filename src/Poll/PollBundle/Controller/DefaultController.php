@@ -130,8 +130,7 @@ class DefaultController extends Controller
         $title = $poll->getTitle();
         $description = $poll->getDescription();
 
-        $q = new PollQuery($em);
-        $questions = $q->getQuestionsByPollId($poll_id);
+        $questions = $em->getRepository('PollPollBundle:QuestionImpl')->findBy(array('poll_id' => $poll_id));
 
         $form = $this->createFormBuilder();
         $dq = new DynamicQuestion($form, $em);
@@ -215,8 +214,7 @@ class DefaultController extends Controller
     public function editquestionAction(Request $request, $question_id) {
         $em = $this->getDoctrine()->getManager();
         $question = $em->getRepository('PollPollBundle:QuestionImpl')->find($question_id);
-        $pq = new PollQuery($em);
-        $options = $pq->getOptionsByQuestionId($question_id);
+        $options = $em->getRepository('PollPollBundle:Choice\OptionImpl')->findBy(array('question' => $question_id));
 
         $universal_question = new UniversalQuestion();
         $universal_question->populateQuestion($question);
@@ -263,8 +261,7 @@ class DefaultController extends Controller
      */
     public function addanswersAction(Request $request, $poll_id) {
         $em = $this->getDoctrine()->getManager();
-        $pq = new PollQuery($em);
-        $questions = $pq->getQuestionsByPollId($poll_id);
+        $questions = $em->getRepository('PollPollBundle:QuestionImpl')->findBy(array('poll_id' => $poll_id));
 
         $form_data = $request->request->get('form');
 
@@ -315,16 +312,15 @@ class DefaultController extends Controller
     public function resultsAction($poll_id) {
         $em = $this->getDoctrine()->getManager();
         $poll = $em->getRepository('PollPollBundle:PollImpl')->find($poll_id);
-        $pq = new PollQuery($em);
-        $questions = $pq->getQuestionsByPollId($poll_id);
+        $questions = $em->getRepository('PollPollBundle:QuestionImpl')->findBy(array('poll_id' => $poll_id));
         $results = array();
-        $pq = new PollQuery($em);
+
         foreach ($questions as $key=>$question) {
             $question_id = $question->getId();
             $question_type = $question->getQuestionType();
             $results[$key] = array("question" => $question->getQuestion());
 
-            $answers = $pq->getAnswersByQuestionId($question_id);
+            $answers = $em->getRepository('PollPollBundle:AnswerImpl')->findBy(array('question' => $question_id));
             $answer_texts = array();
             foreach ($answers as $answer) {
                 $answer_texts[] = $answer->getAnswerText();
@@ -335,9 +331,10 @@ class DefaultController extends Controller
             } else if (in_array($question_type, array(
                     ObjectFactory::SINGLE_CHOICE_QUESTION,
                     ObjectFactory::MULTIPLE_CHOICE_QUESTION))) {
-                $options = $pq->getOptionsByQuestionId($question_id);
+                $options = $em->getRepository('PollPollBundle:Choice\OptionImpl')->findBy(array('question' => $question_id));
                 $results[$key]['answers'] = array();
                 foreach ($options as $option) {
+                    $pq = new PollQuery($em);
                     $count = $pq->getAnswerCountryByOptionId($option);
                     $option_text = $option->getOption();
                     $results[$key]['answers'][] = $count . " - " . $option_text;
