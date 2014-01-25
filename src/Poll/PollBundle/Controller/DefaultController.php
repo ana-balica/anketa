@@ -264,13 +264,27 @@ class DefaultController extends Controller
         foreach($questions as $question) {
             $question_id = $question->getId();
             $answer_text = $form_data[$question_id];
-            $answer = new AnswerImpl();
-            $answer->setAnswerType($question->getQuestionType());
-            $answer->setAnswerText($answer_text);
-            $answer->setQuestionEntity($question);
-            $answer->setPoll($question->getPollId());
-
-            $em->persist($answer);
+            if (in_array($question->getQuestionType(), array(
+                    ObjectFactory::TEXT_QUESTION,
+                    ObjectFactory::SINGLE_CHOICE_QUESTION))) {
+                $answer = new AnswerImpl();
+                $answer->setAnswerType($question->getQuestionType());
+                $answer->setAnswerText($answer_text);
+                $answer->setQuestionEntity($question);
+                $answer->setPoll($question->getPollId());
+                $em->persist($answer);
+            } else if ($question->getQuestionType() == ObjectFactory::MULTIPLE_CHOICE_QUESTION) {
+                foreach($answer_text as $ans) {
+                    $answer = new AnswerImpl();
+                    $answer->setAnswerType($question->getQuestionType());
+                    $answer->setAnswerText($ans);
+                    $answer->setQuestionEntity($question);
+                    $answer->setPoll($question->getPollId());
+                    $em->persist($answer);
+                }
+            } else {
+                throw new \Exception("Invalid question type.");
+            }
         }
 
         $em->flush();
