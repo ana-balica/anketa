@@ -33,3 +33,7 @@ poll_delete_question:
 poll_edit_question:
     pattern: /edit/question/{question_id}
     defaults: { _controller: PollPollBundle:Default:editquestion }
+
+poll_add_answers:
+    pattern: /add/answers/{poll_id}
+    defaults: { _controller: PollPollBundle:Default:addanswers }
