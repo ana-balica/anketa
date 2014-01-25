@@ -2,6 +2,8 @@
 {% spaceless %}
     <div class="form-group">
         {{ form_label(form) }}
+	      <a href="{{ path('poll_delete_question', {'question_id': 0}) }}" class="pull-right action-label red">Delete</a>
+	      <a href="{{ path('poll_edit_question', {'question_id': 0}) }}" class="pull-right action-label">Edit</a>
         {{ form_errors(form) }}
         {{ form_widget(form) }}
     </div>
@@ -10,7 +12,9 @@
 
 {% block textarea_widget %}
 {% spaceless %}
-    <textarea class="form-control" row="3" {{ block('widget_attributes') }} >{{ value }}</textarea>
+		<div {{ block('widget_container_attributes') }}>
+        <textarea class="form-control" row="3" {{ block('widget_attributes') }} >{{ value }}</textarea>
+		</div>
 {% endspaceless %}
 {% endblock textarea_widget %}
 

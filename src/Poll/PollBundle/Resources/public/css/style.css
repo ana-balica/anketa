@@ -77,3 +77,13 @@ ul.main_menu > li {
 	list-style-type: none;
 	text-align: center;
 }
+
+/* Extra form elements */
+.action-label {
+	margin: 0 10px;
+	font-size: 11px;
+}
+
+.red {
+	color: #e54863;
+}
