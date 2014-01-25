@@ -263,8 +263,9 @@ class DefaultController extends Controller
 
         foreach($questions as $question) {
             $question_id = $question->getId();
+            $question_type = $question->getQuestionType();
             $answer_text = $form_data[$question_id];
-            if (in_array($question->getQuestionType(), array(
+            if (in_array($question_type, array(
                     ObjectFactory::TEXT_QUESTION,
                     ObjectFactory::SINGLE_CHOICE_QUESTION))) {
                 $answer = new AnswerImpl();
@@ -272,14 +273,20 @@ class DefaultController extends Controller
                 $answer->setAnswerText($answer_text);
                 $answer->setQuestionEntity($question);
                 $answer->setPoll($question->getPollId());
+                if ($question_type == ObjectFactory::SINGLE_CHOICE_QUESTION) {
+                    $option = $em->getRepository('PollPollBundle:Choice\OptionImpl')->find($answer_text);
+                    $answer->addOption($option);
+                }
                 $em->persist($answer);
-            } else if ($question->getQuestionType() == ObjectFactory::MULTIPLE_CHOICE_QUESTION) {
+            } else if ($question_type == ObjectFactory::MULTIPLE_CHOICE_QUESTION) {
                 foreach($answer_text as $ans) {
                     $answer = new AnswerImpl();
                     $answer->setAnswerType($question->getQuestionType());
                     $answer->setAnswerText($ans);
                     $answer->setQuestionEntity($question);
                     $answer->setPoll($question->getPollId());
+                    $option = $em->getRepository('PollPollBundle:Choice\OptionImpl')->find($ans);
+                    $answer->addOption($option);
                     $em->persist($answer);
                 }
             } else {
