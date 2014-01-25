@@ -1,0 +1,25 @@
+{# src/Poll/PollBundle/Resources/views/Poll/view_poll.html.twig #}
+{% extends 'PollPollBundle:Default:layout.html.twig' %}
+
+{% block content %}
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<div class="well">
+			<legend>Results for "{{ poll.title }}"</legend>
+
+			<p class="help-block">{{ poll.description }}</p>
+
+			{% for result in results %}
+			<div>
+				<p><strong>{{ result.question }}</strong></p>
+				<ul>
+					{% for answer in result.answers %}
+					<li>{{ answer }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% endfor %}
+
+		</div>
+	</div>
+{% endblock %}
