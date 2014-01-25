@@ -205,6 +205,13 @@ class DefaultController extends Controller
         return $this->redirect($this->generateUrl('poll_show_one', array("poll_id" => $poll_id)));
     }
 
+    /**
+     * Edit a question - can change type, text, options (if necessary)
+     *
+     * @param Request $request
+     * @param string $question_id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editquestionAction(Request $request, $question_id) {
         $em = $this->getDoctrine()->getManager();
         $question = $em->getRepository('PollPollBundle:QuestionImpl')->find($question_id);
