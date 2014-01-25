@@ -42,4 +42,24 @@ class PollQuery {
         return $query->getResult();
     }
 
+    public function getAnswersByQuestionId($question_id) {
+        $query = $this->em->createQueryBuilder()
+            ->select('a')
+            ->from('PollPollBundle:AnswerImpl', 'a')
+            ->where('a.question = ?1')
+            ->setParameter(1, $question_id)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function getAnswerCountryByOptionId($option_id) {
+        $query = $this->em->createQueryBuilder()
+            ->select('count(a.id)')
+            ->from('PollPollBundle:AnswerImpl', 'a')
+            ->leftJoin('a.options', 'o')
+            ->where('o.id = ?1')
+            ->setParameter(1, $option_id)
+            ->getQuery();
+        return $query->getSingleScalarResult();
+    }
 } 
