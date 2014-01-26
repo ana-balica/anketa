@@ -45,8 +45,8 @@ class AnswerImpl extends IdentifiedClass implements Answer {
     /**
      * @ORM\ManyToMany(targetEntity="Poll\PollBundle\Entity\Choice\OptionImpl")
      * @ORM\JoinTable(name="Answers_Options",
-     *      joinColumns={@ORM\JoinColumn(name="answer_id", referencedColumnName="id", , onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id", , onDelete="CASCADE")}
+     *      joinColumns={@ORM\JoinColumn(name="answer_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      */
     protected $options;
